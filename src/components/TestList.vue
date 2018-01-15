@@ -37,11 +37,11 @@ export default {
     };
   },
   created() {
-    db.collection('post').get().then(querySnapshot => {
+    db.collection('post').orderBy('date').get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         this.blocks.push(doc.data());
-        this.blocks = this.blocks.reverse();
-      })
+      });
+      this.blocks = this.blocks.reverse();
     });
   },
   components: {

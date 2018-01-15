@@ -19,6 +19,7 @@ export default {
     font-size: 22px;
     border-radius: 30px;
     transition: all 0.3s;
+    padding: 0;
 }
 .btn-back:hover {
     color: #ccc;

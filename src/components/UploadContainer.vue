@@ -13,9 +13,7 @@ the Title"></textarea>
       <input v-model="getImg" type="text" class="img-url" placeholder="Image Url">
     </div>
     <div class="footer">
-      <!-- <router-link :to="{ name: 'DetailView', params: { id:id } }"> -->
       <button class="btn-submit" @click="submit" >submit</button>
-      <!-- </router-link> -->
     </div>
   </div>
   </transition>
@@ -42,7 +40,8 @@ export default {
     },
     methods: {
       submit() {
-        var date = moment().format("YYYY-MM-DD HH:mm:ss");
+        var date = moment().format("YYYYMMDDHHmmss");
+        console.log(date);
         db.collection('post').doc(date).set({
           title: this.getTitle,
           body: this.getBody,
@@ -127,7 +126,6 @@ hr {
   font-size: 64px;
   margin: 40px 0px 0px;
   line-height: 82px;
-  font-family: 'Times New Roman', Times, serif;
   resize: none;
   word-break: keep-all;
 }
@@ -150,7 +148,7 @@ hr {
 }
 .footer {
   text-align: right;
-  margin-bottom: 200px;
+  margin: 20px 0px 200px;
 }
 .img-url {
   font-size: 14px;
@@ -172,8 +170,11 @@ hr {
   #title {
     max-width: 80%;
     font-size: 32px;
-    line-height: 42px;
+    line-height: 40px;
     min-height: 50px;
+  }
+  #body {
+    font-size: 16px;
   }
   .category {
     margin-top: 10px;
