@@ -13,5 +13,10 @@ export default {
     color: #fff;
     font-size: 16px;
 }
+@media (max-width: 880px ) {
+  .btn-add-post {
+    font-size: 12px;
+  }
+}
 </style>
 

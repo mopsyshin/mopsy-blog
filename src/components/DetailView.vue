@@ -5,7 +5,6 @@
                 <div class="title">{{ contents[0].title }}</div>
                 <div class="category">{{ contents[0].category }}</div>
             </div>
-            <hr>
             <div class="body-wrapper">
                 <div class="body">{{ contents[0].body }}</div>
                 <div class="img-wrapper">
@@ -89,6 +88,7 @@ hr {
     margin: 0 auto;
     color: #ccc;
 }
+
 .wrapper-title {
     margin-bottom: 40px;
 }
@@ -122,6 +122,22 @@ hr {
     max-height: 700px;
     margin: 0 auto;
     border-radius: 20px;
+}
+@media (max-width: 880px ) {
+  .title {
+    font-size: 32px;
+    line-height: 40px;
+    margin: 20px 0px 10px;
+    min-height: 0;
+    width: 70%;
+  }
+  .category {
+      font-size: 12px;
+  }
+  .body {
+      font-size: 16px;
+      line-height: 26px;
+  }
 }
 
 </style>

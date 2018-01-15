@@ -64,20 +64,22 @@ export default {
   font-family: 'Times New Roman', Times, serif;
   font-weight: 800;
 }
-@media (max-width: 880px ) {
-  .title {
-    font-size: 80px;
-  }
-}
+
 .disc {
   font-weight: 200;
   margin-top: 10px;
   font-size: 16px;
 }
 .listitem {
-  width: 400px;
+  width: 300px;
   height: auto;
-  background-color: #282A33;
+  background-color: transparent;
   margin: 20px;
+
+}
+@media (max-width: 880px ) {
+  .title {
+    font-size: 80px;
+  }
 }
 </style>

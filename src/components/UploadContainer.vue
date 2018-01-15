@@ -3,14 +3,14 @@
   <div class="wrapper-upload">
     <div class="wrapper-title">
       <BackButton></BackButton>
-      <textarea v-model="getTitle" name="" id="title" rows="2" maxlength="100" placeholder="Enter the       Title"></textarea>
+      <textarea v-model="getTitle" name="" id="title" rows="2" maxlength="100" placeholder="Enter 
+the Title"></textarea>
       <input v-model="getCategory" type="text" class="category" placeholder="Category">
     </div>
-    <hr>
     <div class="wrapper-body">
       
-      <textarea v-model="getBody" name="" id="body" rows="5" placeholder="body"></textarea>
-      <input v-model="getImg" type="text" class="category" placeholder="Image Url">
+      <textarea v-model="getBody" name="" id="body" rows="10" placeholder="Write what you think"></textarea>
+      <input v-model="getImg" type="text" class="img-url" placeholder="Image Url">
     </div>
     <div class="footer">
       <!-- <router-link :to="{ name: 'DetailView', params: { id:id } }"> -->
@@ -70,23 +70,39 @@ export default {
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #1c1d22;
+  transition: all 0.3s;
 }
 ::-moz-placeholder { /* Firefox 19+ */
   color: #1c1d22;
+  transition: all 0.3s;
 }
 :-ms-input-placeholder { /* IE 10+ */
   color: #1c1d22;
+  transition: all 0.3s;
 }
 :-moz-placeholder { /* Firefox 18- */
   color: #1c1d22;
+  transition: all 0.3s;
+}
+
+:hover::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #ccc;
+}
+:hover::-moz-placeholder { /* Firefox 19+ */
+  color: #ccc;
+}
+:hover:-ms-input-placeholder { /* IE 10+ */
+  color: #cccccc;
+}
+:hover:-moz-placeholder { /* Firefox 18- */
+  color: #ccc;
 }
 input, textarea {
   display: block;
   width: 100%;
-  margin: 10px;
   background-color: transparent;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 10px;
   color: #cccccc;
   font-size: 22px;
 }
@@ -109,11 +125,15 @@ hr {
   height: auto;
   min-height: 100px;
   font-size: 64px;
-  margin: 40px 0px 10px;
+  margin: 40px 0px 0px;
   line-height: 82px;
   font-family: 'Times New Roman', Times, serif;
   resize: none;
   word-break: keep-all;
+}
+.category {
+  position: relative;
+  top: -20px;
 }
 #body {
   resize: none;
@@ -131,6 +151,9 @@ hr {
   text-align: right;
   margin-bottom: 200px;
 }
+.img-url {
+  font-size: 14px;
+}
 .btn-submit {
   width: 100px;
   height: 48px;
@@ -143,6 +166,28 @@ hr {
 .btn-submit:hover {
   color: #cccccc;
   border: 1px solid #cccccc;
+}
+@media (max-width: 880px) {
+  #title {
+    max-width: 80%;
+    font-size: 32px;
+    line-height: 42px;
+    min-height: 50px;
+  }
+  .category {
+    margin-top: 10px;
+    top: 0;
+    font-size: 16px;
+  }
+  input, textarea {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  box-sizing: border-box;
+  padding: 0px;
+  color: #cccccc;
+  font-size: 22px;
+}
 }
 
 </style>

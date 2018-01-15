@@ -89,27 +89,34 @@ body {
 .app-wrapper {
   margin: 0 auto;
   width: 100%;
-  max-width: 1760px;
+  max-width: 2040px;
 }
-
-@media (max-width: 1740px) {
+@media (max-width: 2040px) {
   .app-wrapper {
-    max-width: 1320px;
+    max-width: 1700px;
   }
 }
-@media (max-width: 1300px) {
+@media (max-width: 1700px) {
   .app-wrapper {
-    max-width: 880px;
+    max-width: 1360px;
   }
 }
-@media (max-width: 860px) {
+@media (max-width: 1360px) {
   .app-wrapper {
-    max-width: 440px;
+    max-width: 1020px;
   }
 }
-@media (max-width: 420px) {
+@media (max-width: 1020px) {
   .app-wrapper {
-    max-width: 400px;
+    max-width: 680px;
+  }
+}
+@media (max-width: 680px) {
+  .app-wrapper {
+    max-width: 340px;
+  }
+  #app {
+    margin-top: 20px;
   }
 }
 </style>

@@ -23,14 +23,23 @@ export default {
 </script>
 <style scoped>
 .card-wrapper {
-  color: #ddd;
+  color: #ccc;
   box-sizing: border-box;
   padding: 40px;
+  transition: all 0.3s;
+  border: 1px solid #ccc;
+  background-color: #363841;
+}
+.card-wrapper:hover {
+  color: #fff;
+  border:2px solid #fff;
+  transform: translate(-5px, -5px) scale(1.1);
+  z-index: 10;
 }
 .title {
   width: 70%;
-  font-size: 32px;
-  line-height: 40px;
+  font-size: 28px;
+  line-height: 38px;
   font-weight: 800;
   word-break: keep-all;
 }
@@ -46,5 +55,17 @@ export default {
 }
 .img-wrapper img {
   width: 100%;
+}
+@media (max-width: 880px) {
+  .card-wrapper {
+    padding: 30px;
+  }
+  .title {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .img-wrapper {
+    min-height: 20px;
+  }
 }
 </style>
