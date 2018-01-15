@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import TestList from '@/components/TestList';
 import DetailView from '@/components/DetailView';
+import UploadContainer from '@/components/UploadContainer';
 
 Vue.use(Router);
 
@@ -13,10 +14,15 @@ export default new Router({
       component: TestList,
     },
     {
-      path: '/post/:post_id',
+      path: '/post/:id',
       name: 'DetailView',
       component: DetailView,
       props: true,
+    },
+    {
+      path: '/upload',
+      name: 'UploadContainer',
+      component: UploadContainer,
     },
   ],
 });
