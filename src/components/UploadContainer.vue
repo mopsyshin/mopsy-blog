@@ -9,7 +9,7 @@ the Title"></textarea>
     </div>
     <div class="wrapper-body">
       
-      <textarea v-model="getBody" name="" id="body" rows="10" placeholder="Write what you think"></textarea>
+      <textarea v-model="getBody" name="" id="body" rows="8" placeholder="Write what you think"></textarea>
       <input v-model="getImg" type="text" class="img-url" placeholder="Image Url">
     </div>
     <div class="footer">
@@ -133,11 +133,12 @@ hr {
 }
 .category {
   position: relative;
-  top: -20px;
+  top: -10px;
 }
 #body {
   resize: none;
   word-break: keep-all;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .wrapper-body {
   margin-top: 20px;
@@ -180,14 +181,20 @@ hr {
     font-size: 16px;
   }
   input, textarea {
-  display: block;
-  width: 100%;
-  background-color: transparent;
-  box-sizing: border-box;
-  padding: 0px;
-  color: #cccccc;
-  font-size: 22px;
-}
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    box-sizing: border-box;
+    padding: 0px;
+    color: #cccccc;
+    font-size: 22px;
+  }
+  .btn-submit {
+    background-color: #ccc;
+    color: #1c1d22;
+    font-size: 16px;
+    height: 40px;
+  }
 }
 
 </style>

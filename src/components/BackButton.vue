@@ -23,6 +23,15 @@ export default {
 .btn-back:hover {
     color: #ccc;
 }
+@media (max-width: 420px) {
+    .btn-back {
+        color: #ccc;
+        font-size: 14px;
+        position: relative;
+        top: -5px;
+        left: -5px;
+    }
+}
 </style>
 
 
