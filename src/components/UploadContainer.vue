@@ -1,20 +1,22 @@
 <template>
   <transition name="fadein" appear>
-  <div class="wrapper-upload">
-    <div class="wrapper-title">
+    <div class="container-upload">
       <BackButton></BackButton>
-      <textarea v-model="getTitle" name="" id="title" rows="2" maxlength="100" placeholder="Enter 
+      <div class="wrapper-upload">
+        <div class="wrapper-title">
+          <textarea v-model="getTitle" id="title" rows="2" maxlength="100" placeholder="Enter 
 The Title"></textarea>
-      <input v-model="getCategory" type="text" class="category" placeholder="Category">
-    </div>
-    <div class="wrapper-body">
-      
-      <textarea v-model="getBody" name="" id="body" rows="8" placeholder="Write what you think"></textarea>
-      <input v-model="getImg" type="text" class="img-url" placeholder="Image Url">
-    </div>
-    <div class="footer">
-      <button class="btn-submit" @click="submit" >Submit</button>
-    </div>
+          <input v-model="getCategory" type="text" class="category" placeholder="Category">
+        </div>
+        <div class="wrapper-body">
+          
+          <textarea v-model="getBody" id="body" rows="8" placeholder="Write what you think"></textarea>
+          <input v-model="getImg" type="text" class="img-url" placeholder="Image Url">
+        </div>
+        <div class="footer">
+          <button class="btn-submit" @click="submit" >Submit</button>
+        </div>
+      </div>
   </div>
   </transition>
 </template>
@@ -26,6 +28,13 @@ import BackButton from './BackButton';
 
 export default {
     name: 'UploadContainer',
+    created() {
+      this.$emit('stateChange', true);
+    },
+    mounted() {
+      autosize(document.getElementById('title'));
+      autosize(document.getElementById('body'));
+    },
     data() {
       return {
         getTitle: '',
@@ -33,10 +42,6 @@ export default {
         getCategory: '',
         getImg: '',
       };
-    },
-    mounted() {
-      autosize(document.getElementById('title'));
-      autosize(document.getElementById('body'));
     },
     methods: {
       submit() {
@@ -109,7 +114,12 @@ textarea {
   line-height: 36px;
 }
 
-
+.header {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 hr {
   width: 100%;
   border: 1px solid #282A33;
@@ -124,6 +134,7 @@ hr {
   height: auto;
   min-height: 100px;
   font-size: 64px;
+  font-weight: 800;
   margin: 40px 0px 0px;
   line-height: 82px;
   resize: none;
@@ -200,6 +211,10 @@ hr {
     height: 40px;
   }
 }
-
+@media (max-width: 400px ) {
+    .wrapper-upload {
+      margin-top: 60px;
+  }
+}
 </style>
 

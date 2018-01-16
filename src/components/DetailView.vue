@@ -1,6 +1,7 @@
 <template>
-        <div class="detail-wrapper">
-            <BackButton></BackButton>
+    <div class="container-detialview">
+        <BackButton></BackButton>
+        <div class="wrapper-detailview">
             <div class="wrapper-title">
                 <div class="title">{{ contents[0].title }}</div>
                 <div class="category">{{ contents[0].category }}</div>
@@ -12,6 +13,7 @@
                 </div>
             </div>
          </div>
+    </div>
 </template>
 
 <script>
@@ -32,6 +34,7 @@ export default {
       };
   },
   created() {
+    this.$emit('stateChange', true);
     var post_id = this.$route.params.id;
     console.log(post_id);
      db.collection('post').where('id', '==', post_id).get().then(querySnapshot => {
@@ -82,10 +85,10 @@ hr {
   width: 100%;
   border: 1px solid #282A33;
 }
-.detail-wrapper {
+.wrapper-detailview {
     width: 100%;
     max-width: 768px;
-    margin: 0 auto;
+    margin: 80px auto;
     color: #ccc;
 }
 
@@ -100,9 +103,10 @@ hr {
     min-height: 100px;
     font-size: 64px;
     margin: 40px 0px 10px;
+    font-weight: 800;
     line-height: 72px;
     resize: none;
-    word-break: keep-all;
+    word-break: break-word;
 }
 .body-wrapper {
     margin: 30px 0px 120px;
@@ -123,7 +127,7 @@ hr {
     border-radius: 20px;
 }
 @media (max-width: 880px ) {
-    .detail-wrapper {
+    .wrapper-detailview {
         box-sizing: border-box;
         padding: 0px 8px;
     }
@@ -142,5 +146,9 @@ hr {
         line-height: 26px;
     }
 }
-
+@media (max-width: 400px ) {
+    .wrapper-detailview {
+      margin-top: 60px;
+  }
+}
 </style>

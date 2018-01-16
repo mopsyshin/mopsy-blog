@@ -1,4 +1,5 @@
 <template>
+  <div class="container-testlist">
   <div class="test-list">
     <div class="list-header">
       <div>
@@ -21,7 +22,7 @@
     <div class="footer">
       <button class="btn-scroll" @click="loadMore">Load more</button>
     </div>
-    
+    </div>
   </div>
 </template>
 
@@ -31,6 +32,7 @@ import Vue from 'vue'
 import {VueMasonryPlugin} from 'vue-masonry';
 import cardview from './CardView';
 import UploadButton from './UploadButton';
+
 Vue.use(VueMasonryPlugin)
 export default {
   name: 'TestList',
@@ -120,9 +122,40 @@ export default {
   transition: all 0.3s;
 }
 .btn-scroll:hover {
-  background-color: #2a2d35;
+  background-color: #2b2c35;
 }
-@media (max-width: 880px ) {
+.container-testlist {
+  margin: 60px auto;
+  width: 100%;
+  max-width: 2040px;
+}
+@media (max-width: 2040px) {
+  .container-testlist {
+    max-width: 1700px;
+  }
+}
+@media (max-width: 1700px) {
+  .container-testlist {
+    max-width: 1360px;
+  }
+}
+@media (max-width: 1360px) {
+  .container-testlist {
+    max-width: 1020px;
+  }
+}
+@media (max-width: 1020px) {
+  .container-testlist {
+    max-width: 680px;
+  }
+}
+@media (max-width: 680px) {
+  .container-testlist {
+    max-width: 375px;
+  }
+  #app {
+    margin-top: 20px;
+  }
   .title {
     font-size: 80px;
   }
