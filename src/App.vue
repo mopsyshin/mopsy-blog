@@ -82,7 +82,7 @@ body {
   color: #fff;
 }
 #app {
-  font-family: 'Avenir', 'Apple SD Gothic Neo', Helvetica, Arial, "맑은 고딕", sans-serif;
+  font-family: 'Avenir', 'Apple SD Gothic Neo', Helvetica, Arial, '맑은 고딕', 'Malgun Gothic', Dotum, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #ccc;

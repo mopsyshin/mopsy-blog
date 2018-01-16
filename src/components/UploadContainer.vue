@@ -128,6 +128,7 @@ hr {
   width: 100%;
 }
 #title {
+  font-family: 'Avenir', 'Apple SD Gothic Neo', Helvetica, Arial, 'Malgun Gothic', Dotum, sans-serif;
   width: 100%;
   max-width: 500px;
   background-color: transparent;
