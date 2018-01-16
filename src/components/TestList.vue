@@ -49,7 +49,6 @@ export default {
       });
       this.temp = this.temp.reverse();
       this.blocks = this.temp.slice(0,20);
-      console.log(this.blocks);
     });
     
   },
