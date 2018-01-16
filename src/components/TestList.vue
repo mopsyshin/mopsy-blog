@@ -127,4 +127,38 @@ export default {
     font-size: 80px;
   }
 }
+@media (max-width: 400px) {
+  .list-header {
+    margin: 0px 5px 20px;
+  }
+  .test-list {
+    box-sizing: border-box;
+    padding: 0px 5px;
+  }
+  .listitem {
+    width: 170px;
+    margin: 5px;
+  }
+}
+@media (max-width: 361px) {
+  .listitem {
+    width: 160px;
+    margin: 5px;
+  }
+}
+@media (max-width: 341px) {
+  .list-header {
+    font-size: 60px;
+    margin: 0px 5px 20px;
+  }
+  .test-list {
+    box-sizing: border-box;
+    padding: 0px 5px;
+  }
+  .listitem {
+  width: 140px;
+  height: auto;
+  background-color: transparent;
+}
+}
 </style>

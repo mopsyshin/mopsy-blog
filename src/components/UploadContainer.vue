@@ -4,7 +4,7 @@
     <div class="wrapper-title">
       <BackButton></BackButton>
       <textarea v-model="getTitle" name="" id="title" rows="2" maxlength="100" placeholder="Enter 
-the Title"></textarea>
+The Title"></textarea>
       <input v-model="getCategory" type="text" class="category" placeholder="Category">
     </div>
     <div class="wrapper-body">
@@ -13,7 +13,7 @@ the Title"></textarea>
       <input v-model="getImg" type="text" class="img-url" placeholder="Image Url">
     </div>
     <div class="footer">
-      <button class="btn-submit" @click="submit" >submit</button>
+      <button class="btn-submit" @click="submit" >Submit</button>
     </div>
   </div>
   </transition>
@@ -136,7 +136,6 @@ hr {
 #body {
   resize: none;
   word-break: keep-all;
-  font-family: Arial, Helvetica, sans-serif;
 }
 .wrapper-body {
   margin-top: 20px;
@@ -167,6 +166,10 @@ hr {
   border: 1px solid #cccccc;
 }
 @media (max-width: 880px) {
+  .wrapper-upload {
+    box-sizing: border-box;
+    padding: 0px 8px;
+  }
   #title {
     max-width: 80%;
     font-size: 32px;

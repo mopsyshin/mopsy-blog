@@ -27,21 +27,21 @@ export default {
   box-sizing: border-box;
   padding: 40px;
   transition: all 0.3s;
-  border: 1px solid #ccc;
-  background-color: #363841;
+  border-radius: 10px;
+  background-color: #2b2c35;
 }
 .card-wrapper:hover {
   color: #fff;
-  border:2px solid #fff;
+  background-color: #1f1f25;
   transform: translate(-5px, -5px) scale(1.1);
   z-index: 10;
 }
 .title {
   width: 70%;
-  font-size: 28px;
-  line-height: 38px;
+  font-size: 24px;
+  line-height: 32px;
   font-weight: 800;
-  word-break: keep-all;
+  word-break: break-word;
 }
 .disc {
   text-align: right;
@@ -65,6 +65,23 @@ export default {
     line-height: 32px;
   }
   .img-wrapper {
+    min-height: 20px;
+  }
+  .disc {
+    font-size: 14px;
+    text-align: right;
+  }
+}
+@media (max-width: 400px) {
+  .card-wrapper {
+    padding: 15px;
+  }
+  .title {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .img-wrapper {
+    margin: 20px 0px 20px;
     min-height: 20px;
   }
 }

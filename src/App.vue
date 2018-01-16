@@ -82,7 +82,7 @@ body {
   color: #fff;
 }
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', 'Apple SD Gothic Neo', Helvetica, Arial, "맑은 고딕", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #ccc;
@@ -115,7 +115,7 @@ body {
 }
 @media (max-width: 680px) {
   .app-wrapper {
-    max-width: 340px;
+    max-width: 375px;
   }
   #app {
     margin-top: 20px;

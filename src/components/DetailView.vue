@@ -101,7 +101,6 @@ hr {
     font-size: 64px;
     margin: 40px 0px 10px;
     line-height: 72px;
-    font-family: 'Times New Roman', Times, serif;
     resize: none;
     word-break: keep-all;
 }
@@ -124,20 +123,24 @@ hr {
     border-radius: 20px;
 }
 @media (max-width: 880px ) {
-  .title {
-    font-size: 32px;
-    line-height: 40px;
-    margin: 20px 0px 10px;
-    min-height: 0;
-    width: 70%;
-  }
-  .category {
-      font-size: 12px;
-  }
-  .body {
-      font-size: 16px;
-      line-height: 26px;
-  }
+    .detail-wrapper {
+        box-sizing: border-box;
+        padding: 0px 8px;
+    }
+    .title {
+        font-size: 32px;
+        line-height: 40px;
+        margin: 20px 0px 10px;
+        min-height: 0;
+        width: 60%;
+    }
+    .category {
+        font-size: 12px;
+    }
+    .body {
+        font-size: 16px;
+        line-height: 26px;
+    }
 }
 
 </style>
