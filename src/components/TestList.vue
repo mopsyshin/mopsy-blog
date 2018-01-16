@@ -19,8 +19,8 @@
 
         </cardview>
     </div>
-    <div class="footer">
-      <button class="btn-scroll" @click="loadMore">Load more</button>
+    <div class="footer" @click="loadMore">
+      <button class="btn-scroll" >Load more</button>
     </div>
     </div>
   </div>
@@ -108,11 +108,11 @@ export default {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  
+  cursor: pointer;
 }
 .btn-scroll {
-  width: 100%;
-  height: 100%;
+  width: 140px;
+  height: 60px;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -152,8 +152,6 @@ export default {
 @media (max-width: 680px) {
   .container-testlist {
     max-width: 375px;
-  }
-  #app {
     margin-top: 20px;
   }
   .title {
@@ -171,6 +169,9 @@ export default {
   .listitem {
     width: 170px;
     margin: 5px;
+  }
+  .btn-scroll {
+
   }
 }
 @media (max-width: 361px) {
