@@ -19,7 +19,7 @@ export default {
 .wrapper-btn-back {
     width: 100%;
     height: 60px;
-    background-color: #43444e;
+    background-color: #1f1f25;
     color: #ccc;
     font-size: 14px;
 }

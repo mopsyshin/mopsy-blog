@@ -82,7 +82,7 @@ a:visited {
 }
 body {
   background-color: #363841;
-  color: #fff;
+  color: #ccc;
 }
 #app {
   -webkit-font-smoothing: antialiased;
