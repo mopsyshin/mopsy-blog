@@ -105,8 +105,8 @@ hr {
     margin: 30px 0px 120px;
 }
 .body {
-    font-size: 22px;
-    line-height: 36px;
+    font-size: 18px;
+    line-height: 1.8;
     word-break: break-word;
 }
 .img-wrapper {

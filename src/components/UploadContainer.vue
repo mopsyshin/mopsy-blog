@@ -58,8 +58,6 @@ export default {
           showCodeView : false,
           showUndo : false,
           showRedo : false,
-          showFontColor : false,
-          showHiliteColor : false,
           showAlign : false,
           showList : false,
           showTable : false,

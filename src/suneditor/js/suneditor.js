@@ -1799,7 +1799,7 @@ SUNEDITOR.defaultLang = {
                     '                <strong class="screen_out">'+lang.toolbar.fontColor+'</strong>'+
                     '                <button type="button" class="btn_editor" title="'+lang.toolbar.fontColor+'">'+
                     '                    <div class="ico_fcolor">'+
-                    '                        <em class="color_font" style="background-color:#1f92fe"></em>'+
+                    // '                        <em class="color_font" style="background-color:#1f92fe"></em>'+
                     '                    </div>'+
                     '                </button>'+
                     '            </div>'+
@@ -1807,7 +1807,7 @@ SUNEDITOR.defaultLang = {
                     '                <div class="inner_layer">'+
                     '                    <div class="pallet_bgcolor">'+
                     '                        <ul class="list_color list_bgcolor">'+
-                    '                            <li><button type="button" class="btn_color" style="background-color:#ff0000;">#ff0000<span class="bg_check"></span><span class="bg_btnframe"></span></button></li>'+
+                    '                            <li><button type="button" class="btn_color" style="background-color:#cccccc;">#cccccc<span class="bg_check"></span><span class="bg_btnframe"></span></button></li>'+
                     '                            <li><button type="button" class="btn_color" style="background-color:#ff5e00;">#ff5e00<span class="bg_check"></span><span class="bg_btnframe"></span></button></li>'+
                     '                            <li><button type="button" class="btn_color" style="background-color:#ffe400;">#ffe400<span class="bg_check"></span><span class="bg_btnframe"></span></button></li>'+
                     '                            <li><button type="button" class="btn_color" style="background-color:#abf200;">#abf200<span class="bg_check"></span><span class="bg_btnframe"></span></button></li>'+
@@ -1873,14 +1873,14 @@ SUNEDITOR.defaultLang = {
                     '            <strong class="screen_out">'+lang.toolbar.hiliteColor+'</strong>'+
                     '            <button type="button" class="btn_editor btn_fbgcolor" title="'+lang.toolbar.hiliteColor+'" data-display="sub">'+
                     '                <div class="img_editor ico_fcolor_w">'+
-                    '                    <em class="color_font" style="background-color:#1f92fe"></em>'+
+                    // '                    <em class="color_font" style="background-color:#1f92fe"></em>'+
                     '                </div>'+
                     '            </button>'+
                     '            <div class="layer_editor layer_color" data-command="hiliteColor">'+
                     '                <div class="inner_layer">'+
                     '                    <div class="pallet_bgcolor pallet_text">'+
                     '                        <ul class="list_color list_bgcolor">'+
-                    '                            <li><button type="button" class="btn_color" style="color:#fff;background-color:#1e9af9;">#1e9af9<span class="bg_check"></span><span class="bg_btnframe"></span></button></li>'+
+                    '                            <li><button type="button" class="btn_color" style="color:#fff;background-color:#363841;">#363841<span class="bg_check"></span><span class="bg_btnframe"></span></button></li>'+
                     '                            <li><button type="button" class="btn_color" style="color:#fff;background-color:#00b8c6;">#00b8c6<span class="bg_check"></span><span class="bg_btnframe"></span></button></li>'+
                     '                            <li><button type="button" class="btn_color" style="color:#fff;background-color:#6cce02;">#6cce02<span class="bg_check"></span><span class="bg_btnframe"></span></button></li>'+
                     '                            <li><button type="button" class="btn_color" style="color:#fff;background-color:#ff9702;">#ff9702<span class="bg_check"></span><span class="bg_btnframe"></span></button></li>'+
@@ -2289,7 +2289,7 @@ SUNEDITOR.defaultLang = {
                 ' ::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,0); border-radius: 2px; background-color: #ffffff; opacity: 0; }' +
                 ' ::-webkit-scrollbar { width: 0px; background-color: #ffffff; opacity: 0; display: none; }' +
                 ' ::-webkit-scrollbar-thumb { border-radius: 2px; -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3); background-color: #eee; }' +
-                '   body {font-family:'+options.editorIframeFont+'; color: #ccc; font-size: 22px; margin:30px 10px; font-weight: 300; word-break:break-all;} p {margin:0; padding:0;} blockquote {margin-top:0; margin-bottom:0; margin-right:0;}' +
+                '   body {font-family:'+options.editorIframeFont+'; color: #ccc; font-size: 18px; line-height: 1.8; margin:30px 10px; font-weight: 300; word-break:break-all;} p {margin:0; padding:0;} blockquote {margin-top:0; margin-bottom:0; margin-right:0;}' +
                 '   table {table-layout:auto; border:1px solid rgb(204, 204, 204); width:100%; max-width:100%; margin-bottom:20px; background-color:transparent; border-spacing:0; border-collapse:collapse;}'+
                 '   table tr {border:1px solid #ccc;}'+
                 '   table tr td {border:1px solid #ccc; padding:8px;}'+
