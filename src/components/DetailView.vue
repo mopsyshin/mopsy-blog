@@ -7,10 +7,7 @@
                 <div class="category">{{ contents[0].category }}</div>
             </div>
             <div class="body-wrapper">
-                <div class="body">{{ contents[0].body }}</div>
-                <div class="img-wrapper">
-                    <img :src="contents[0].img" alt="">
-                </div>
+                <div class="body" v-html="contents[0].body"></div>
             </div>
          </div>
     </div>
@@ -28,22 +25,19 @@ export default {
               { 'id' : '' },
               { 'title' : '' },
               { 'body' : '' },
-              { 'img' : '' },
               { 'category' : '' },
           ],
       };
   },
   created() {
-    this.$emit('stateChange', true);
     var post_id = this.$route.params.id;
-    console.log(post_id);
      db.collection('post').where('id', '==', post_id).get().then(querySnapshot => {
         querySnapshot.forEach(doc => {
+            var tempBody = doc.data().body;
             const data = {
                 'id': doc.id,
                 'title': doc.data().title,
-                'body': doc.data().body,
-                'img': doc.data().img,
+                'body': tempBody,
                 'category': doc.data().category,
             }
             var intData = [];
@@ -56,7 +50,6 @@ export default {
   },
   beforeRouteUpdate(to, from, next) {
     var toPostId = to.params.id;
-    console.log(toPostId);
     db.collection('post').where('id', '==', toPostId).get().then(querySnapshot => {
         querySnapshot.forEach(doc => {
             const data = {
@@ -114,6 +107,7 @@ hr {
 .body {
     font-size: 22px;
     line-height: 36px;
+    word-break: break-word;
 }
 .img-wrapper {
     margin-top: 50px;

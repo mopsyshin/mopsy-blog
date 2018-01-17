@@ -17,6 +17,8 @@ export default {
 </script>
 
 <style>
+@import './suneditor/css/suneditor.css';
+
 @keyframes fadein {
   from {
     opacity: 0;

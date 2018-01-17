@@ -2,19 +2,17 @@
   <transition name="fadein" appear>
     <div class="container-upload">
       <BackButton></BackButton>
-      <div class="wrapper-upload">
+      <div class="wrapper-upload" >
         <div class="wrapper-title">
           <textarea v-model="getTitle" id="title" rows="2" maxlength="100" placeholder="Enter 
 The Title"></textarea>
           <input v-model="getCategory" type="text" class="category" placeholder="Category">
         </div>
         <div class="wrapper-body">
-          
-          <textarea v-model="getBody" id="body" rows="8" placeholder="Write what you think"></textarea>
-          <input v-model="getImg" type="text" class="img-url" placeholder="Image Url">
+          <textarea name="" id="suneditor" cols="30" rows="10"></textarea>
         </div>
         <div class="footer">
-          <button class="btn-submit" @click="submit" >Submit</button>
+          <button class="btn-submit" @click="submit">Submit</button>
         </div>
       </div>
   </div>
@@ -25,33 +23,58 @@ import db from './firebaseInit';
 import Router from 'vue-router';
 import moment from 'moment';
 import BackButton from './BackButton';
+import SUN from '../suneditor/js/suneditor.js';
+
+
+var editor;
 
 export default {
     name: 'UploadContainer',
     created() {
-      this.$emit('stateChange', true);
+
     },
     mounted() {
       autosize(document.getElementById('title'));
-      autosize(document.getElementById('body'));
-    },
+      this.initEditor();
+    }, 
     data() {
       return {
         getTitle: '',
         getBody: '',
         getCategory: '',
-        getImg: '',
       };
     },
     methods: {
+      initEditor() {
+        editor = SUNEDITOR.create('suneditor',{
+          videoX : 600,
+          videoY : 320,
+          width : '100%',
+          height: 'auto',
+          editorIframeFont: "'Apple SD Gothic Neo', Helvetica, Arial, 'Malgun Gothic', Dotum, sans-serif;",
+          showUnderline : false,
+          showItalic : false,
+          showInOutDent : false,
+          showCodeView : false,
+          showUndo : false,
+          showRedo : false,
+          showFontColor : false,
+          showHiliteColor : false,
+          showAlign : false,
+          showList : false,
+          showTable : false,
+          showFullScreen : false,
+        });
+      },
       submit() {
+        var tempCon = editor.getContent();
+        this.getBody = tempCon;
         var date = moment().format("YYYYMMDDHHmmss");
         console.log(date);
         db.collection('post').doc(date).set({
           title: this.getTitle,
           body: this.getBody,
           category: this.getCategory,
-          img: this.getImg,
           date: date,
           id: date,
         })
@@ -63,6 +86,7 @@ export default {
         });
         this.$router.push({ name: 'TestList' });
       },
+
     },
     components: {
       BackButton: BackButton,
@@ -70,8 +94,6 @@ export default {
 }
 </script>
 <style scoped>
-
-
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #1c1d22;
   transition: all 0.3s;
@@ -216,5 +238,7 @@ hr {
       margin-top: 60px;
   }
 }
+
+
 </style>
 
