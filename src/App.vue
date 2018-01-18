@@ -2,17 +2,22 @@
   <div id="app">
     <div class="app-wrapper">
       <transition name="fadein" mode="out-in" appear>
-            <router-view/>
-        </transition>
+        <router-view/>
+      </transition>
+      <!-- <modal></modal> -->
     </div>
   </div>
 </template>
 
 <script>
 import BackButton from './components/BackButton';
+// import modal from './components/modal';
 
 export default {
   name: 'App',
+  // components: {
+  //   modal: modal,
+  // },
 };
 </script>
 

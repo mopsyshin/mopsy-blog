@@ -12,12 +12,14 @@ The Title"></textarea>
           <textarea name="" id="suneditor" cols="30" rows="10"></textarea>
         </div>
         <div class="footer">
-          <button class="btn-submit" @click="submit">Submit</button>
+          <button class="btn-submit" @click="submit" :disabled="submitState">Submit</button>
         </div>
       </div>
   </div>
   </transition>
 </template>
+
+
 <script>
 import db from './firebaseInit';
 import Router from 'vue-router';
@@ -26,6 +28,7 @@ import BackButton from './BackButton';
 import SUN from '../suneditor/js/suneditor.js';
 
 var editor;
+var submitState;
 
 export default {
     name: 'UploadContainer',
@@ -33,11 +36,20 @@ export default {
       autosize(document.getElementById('title'));
       this.initEditor();
     }, 
+    created() {
+      // initialize submit button
+      submitState = false;
+    },
     data() {
       return {
         getTitle: '',
         getCategory: '',
       };
+    },
+    computed: {
+      submitState() {
+        return submitState;
+      },
     },
     methods: {
       initEditor() {
@@ -61,6 +73,8 @@ export default {
         });
       },
       submit() {
+        // disable submit button
+        submitState = true;
         // binding Contents
         var postNumbers = [];
         var getPostCount = '';
@@ -68,31 +82,31 @@ export default {
         var getBody = editor.getContent();
         var getTitle = this.getTitle;
         var getCategory = this.getCategory;
+
         
         // Blank Validation function
-        var isEmpty = function() {
+        var isEmpty = () => {
             return getTitle.trim() === "" || getCategory.trim() === "" || getBody.trim() === ""
         };
         console.log(isEmpty());
-
+        
         // Blank Validation
         if (!isEmpty()) {
           console.log('pass');
-          // Router trigger event Define
-          var goList = () => {
-            this.$router.push({ name: 'TestList' });
-          };
+          
 
+          // Router trigger event Define
+          this.$router.push({ name: 'TestList' });
           // Current postNumber Counting
           db.collection('post').get().then(querySnapshot => {
             querySnapshot.forEach(doc => {
               postNumbers.push(doc.data());
             });
-          }).then( function(){
+          }).then( () => {
               getPostCount = postNumbers.length;
               getPostCount = getPostCount.toString();
               console.log(getPostCount);
-          }).then( function() {
+          }).then( () => {
             // Set Data to Database
             db.collection('post').doc(getPostCount).set({
               title: getTitle,
@@ -101,17 +115,18 @@ export default {
               date: date,
               id: getPostCount,
               })  
-              .then(function() {
-                goList();
+              .then( () => {
                 console.log('success');
               })
-              .catch(function(error){
+              .catch( error => {
                 console.log('error');
               });
           });
         } else {
           console.log('fail');
           alert("Please Complete Title & Category");
+          // initialize submit button
+          submitState = false;
         
         };
       },
