@@ -1,5 +1,5 @@
 <template>
-  <transition name="fadein" appear>
+  <transition name="fadein" mode="out-in" appear>
     <div class="container-upload">
       <BackButton></BackButton>
       <div class="wrapper-upload" >
@@ -68,40 +68,52 @@ export default {
         var getBody = editor.getContent();
         var getTitle = this.getTitle;
         var getCategory = this.getCategory;
-
-        // Router trigger event Define
-        var goList = () => {
-          this.$router.push({ name: 'TestList' });
+        
+        // Blank Validation function
+        var isEmpty = function() {
+            return getTitle.trim() === "" || getCategory.trim() === "" || getBody.trim() === ""
         };
+        console.log(isEmpty());
 
-        // Current postNumber Counting
-        db.collection('post').get().then(querySnapshot => {
-          querySnapshot.forEach(doc => {
-            postNumbers.push(doc.data());
-          });
-        }).then( function(){
-            getPostCount = postNumbers.length;
-            getPostCount = getPostCount.toString();
-            console.log(getPostCount);
-        }).then( function() {
-          // Set Data to Database
-          db.collection('post').doc(getPostCount).set({
-            title: getTitle,
-            body: getBody,
-            category: getCategory,
-            date: date,
-            id: getPostCount,
-            })  
-            .then(function() {
-              console.log('success');
-            })
-            .catch(function(error){
-              console.log('error');
+        // Blank Validation
+        if (!isEmpty()) {
+          console.log('pass');
+          // Router trigger event Define
+          var goList = () => {
+            this.$router.push({ name: 'TestList' });
+          };
+
+          // Current postNumber Counting
+          db.collection('post').get().then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+              postNumbers.push(doc.data());
             });
-        }).then(function(){
-          // Call Router Trigger
-          goList();
-        });
+          }).then( function(){
+              getPostCount = postNumbers.length;
+              getPostCount = getPostCount.toString();
+              console.log(getPostCount);
+          }).then( function() {
+            // Set Data to Database
+            db.collection('post').doc(getPostCount).set({
+              title: getTitle,
+              body: getBody,
+              category: getCategory,
+              date: date,
+              id: getPostCount,
+              })  
+              .then(function() {
+                goList();
+                console.log('success');
+              })
+              .catch(function(error){
+                console.log('error');
+              });
+          });
+        } else {
+          console.log('fail');
+          alert("Please Complete Title & Category");
+        
+        };
       },
     },
     components: {
