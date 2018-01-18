@@ -6,6 +6,8 @@ import router from './router';
 
 Vue.config.productionTip = false;
 /* eslint-disable no-new */
+Vue.prototype.$eventHub = new Vue();
+
 new Vue({
   el: '#app',
   router,

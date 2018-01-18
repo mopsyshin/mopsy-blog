@@ -1,6 +1,6 @@
 # mopsy-blog
 
-> A Vue.js project
+> Vue.js로 구성한 심플한 블로그입니다
 
 ## Build Setup
 

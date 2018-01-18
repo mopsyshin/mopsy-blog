@@ -1,5 +1,5 @@
 <template>
-      <router-link :to="{name: 'UploadContainer'}">
+      <router-link :to="{name: 'UploadContainer' }">
           <p class="btn-add-post">+ Add Post</p>
       </router-link>
 </template>

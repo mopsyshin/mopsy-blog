@@ -52,13 +52,12 @@ export default {
       this.temp = this.temp.reverse();
       this.blocks = this.temp.slice(0,20);
     });
-    
   },
-  computed: {
-    loadContents() {
-        return window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
-    },
-  },
+  // computed: {
+  //   loadContents() {
+  //       return window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
+  //   },
+  // },
   methods: {
     loadMore() {
       this.loadCount = this.loadCount + 1;
