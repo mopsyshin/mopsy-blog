@@ -9,8 +9,8 @@
                     </div>
                     <div>
                         <div class="buttongroup">
-                            <button class="btn btn-edit" @click="editPost">수정</button>
-                            <button class="btn btn-delete" @click="deleteModalToggle">삭제</button>
+                            <div class="btn btn-edit" @click="editPost">수정</div>
+                            <div class="btn btn-delete" @click="deleteModalToggle">삭제</div>
                         </div>
                     </div>
                 </div>
@@ -179,14 +179,18 @@ hr {
     cursor: pointer;
     color: #aaa;
     font-size: 14px;
+    display: inline-block;
+    margin-left: 10px;
 }
 .body-wrapper {
     margin: 30px 0px 120px;
 }
 .body {
-    font-size: 18px;
-    line-height: 1.8;
+    font-size: 18px !important;
+    line-height: 1.8 !important;
     word-break: break-word;
+    color: #ccc !important;
+    background-color: transparent !important;
 }
 .img-wrapper {
     margin-top: 50px;
@@ -208,6 +212,7 @@ hr {
     z-index: 10000;
     background-color: rgba(0,0,0,0.3);
 }
+
 @media (max-width: 880px ) {
     .wrapper-detailview {
         box-sizing: border-box;
@@ -223,7 +228,7 @@ hr {
         font-size: 12px;
     }
     .body {
-        font-size: 16px;
+        font-size: 16px !important;
     }
 }
 @media (max-width: 400px ) {
@@ -233,5 +238,12 @@ hr {
     .title {
       max-width: 220px;
     }
+    .btn {
+        font-size: 12px;
+    }
+    .body {
+        font-size: 14px !important;
+    }
+
 }
 </style>

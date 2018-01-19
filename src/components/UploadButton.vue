@@ -1,8 +1,8 @@
 <template>
       <router-link :to="{name: 'UploadContainer' }">
-          <button class="btn-add-post">
+        <div class="btn-add-post">
               <span>+</span>
-            </button>
+        </div>
       </router-link>
 </template>
 <script>
@@ -20,6 +20,10 @@ export default {
     border-radius: 40px;
     border: 1px solid #ccc;
     transition: all 0.3s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .btn-add-post:hover {
     color: #fff;
