@@ -1,12 +1,10 @@
 <template>
-  <transition name="fadein" mode="out-in" appear>
-    <div class="container-upload">
-      <BackButton></BackButton>
+    <div class="container-edit">
       <div class="wrapper-upload" >
         <div class="wrapper-title">
           <textarea v-model="getTitle" id="title" rows="2" maxlength="100" placeholder="Enter 
 The Title"></textarea>
-          <select class="category-select" v-model="getCategory">
+           <select class="category-select" v-model="getCategory">
             <option value="" hidden>Category</option>
             <option value="Design">Design</option>
             <option value="Dev">Dev</option>
@@ -19,11 +17,11 @@ The Title"></textarea>
           <textarea name="" id="suneditor" cols="30" rows="10"></textarea>
         </div>
         <div class="footer">
-          <button class="btn-submit" @click="submit" :disabled="submitState">Submit</button>
+          <button class="btn btn-cancel" @click="cancelEdit" :disabled="submitState">Cancel</button>
+          <button class="btn btn-submit" @click="submit" :disabled="submitState">Submit</button>
         </div>
       </div>
-  </div>
-  </transition>
+    </div>
 </template>
 
 
@@ -31,7 +29,6 @@ The Title"></textarea>
 import db from './firebaseInit';
 import Router from 'vue-router';
 import moment from 'moment';
-import BackButton from './BackButton';
 import SUN from '../suneditor/js/suneditor.js';
 
 var editor;
@@ -39,18 +36,37 @@ var submitState;
 
 export default {
     name: 'UploadContainer',
+    created() {
+      var intData = [];
+      var post_id = this.$route.params.id;
+      db.collection('post').where('id', '==', post_id).get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+            const data = {
+                'id': doc.id,
+                'title': doc.data().title,
+                'body': doc.data().body,
+                'category': doc.data().category,
+            }
+            intData.push(data);
+        });
+      })
+      .then( () => {
+        editor.setContent(intData[0].body);
+        this.getTitle = intData[0].title;
+        this.getCategory = intData[0].category;
+        this.getId = intData[0].id;
+      });
+      submitState = false;
+    },
     mounted() {
       autosize(document.getElementById('title'));
       this.initEditor();
     }, 
-    created() {
-      // initialize submit button
-      submitState = false;
-    },
     data() {
       return {
         getTitle: '',
         getCategory: '',
+        getId: '',
       };
     },
     computed: {
@@ -83,37 +99,20 @@ export default {
         // disable submit button
         submitState = true;
         // binding Contents
-        var postNumbers = [];
-        var getPostCount = '';
+        var getPostCountStr = this.getId;
+        var getPostCount = parseInt(this.getId);
         var date = moment().format("YYYYMMDDHHmmss");
         var getBody = editor.getContent();
         var getTitle = this.getTitle;
         var getCategory = this.getCategory;
-        var getPostCountStr;
+
         
         // Blank Validation function
         var isEmpty = () => {
             return getTitle.trim() === "" || getCategory.trim() === "" || getBody.trim() === ""
         };
-        console.log(isEmpty());
-        
         // Blank Validation
         if (!isEmpty()) {
-          console.log('pass');
-          
-
-          // Router trigger event Define
-          this.$router.push({ name: 'TestList' });
-          // Current postNumber Counting
-          db.collection('post').get().then(querySnapshot => {
-            querySnapshot.forEach(doc => {
-              postNumbers.push(doc.data());
-            });
-          }).then( () => {
-              getPostCount = postNumbers.length;
-              getPostCountStr = getPostCount.toString();
-              console.log(getPostCount);
-          }).then( () => {
             // Set Data to Database
             db.collection('post').doc(getPostCountStr).set({
               title: getTitle,
@@ -125,29 +124,29 @@ export default {
               })  
               .then( () => {
                 console.log('success');
-                var message = "업로드가 완료되었습니다";
+                var message = "수정이 완료되었습니다";
                 this.$eventHub.$emit('toggleModal', message);
+                this.$emit('editStateChange');
               })
               .catch( error => {
                 console.log('error');
               });
-          });
         } else {
-          console.log('fail');
           alert("Please Complete Title & Category");
           // initialize submit button
           submitState = false;
-        
         };
       },
-    },
-    components: {
-      BackButton: BackButton,
+      cancelEdit() {
+        this.$emit('editStateChange');
+      }
     },
 }
 </script>
 <style scoped>
-
+.container-edit {
+  width: 100%;
+}
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #1c1d22;
   transition: all 0.3s;
@@ -177,7 +176,6 @@ export default {
 :hover:-moz-placeholder { /* Firefox 18- */
   color: #ccc;
 }
-
 input, textarea {
   display: block;
   width: 100%;
@@ -249,7 +247,7 @@ hr {
 .wrapper-upload {
     width: 100%;
     max-width: 768px;
-    margin: 40px auto;
+    margin: 50px auto;
 }
 .footer {
   text-align: right;
@@ -258,7 +256,7 @@ hr {
 .img-url {
   font-size: 14px;
 }
-.btn-submit {
+.btn {
   width: 100px;
   height: 48px;
   border-radius: 40px;
@@ -267,7 +265,7 @@ hr {
   border: 1px solid #1c1d22;
   transition: all 0.3s;
 }
-.btn-submit:hover {
+.btn:hover {
   color: #cccccc;
   border: 1px solid #cccccc;
 }

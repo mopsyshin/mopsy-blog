@@ -4,20 +4,40 @@
       <transition name="fadein" mode="out-in" appear>
         <router-view/>
       </transition>
-      <!-- <modal></modal> -->
+      <transition name="modalfadein">
+        <SemiModal v-if="uploadComplete" :message="modalMessage"></SemiModal>
+      </transition>
     </div>
   </div>
 </template>
 
 <script>
 import BackButton from './components/BackButton';
-// import modal from './components/modal';
+import SemiModal from './components/modal/SemiModal';
 
 export default {
   name: 'App',
-  // components: {
-  //   modal: modal,
-  // },
+  data() {
+    return {
+      uploadComplete: false,
+      modalMessage: '',
+    };
+  },
+  created() {
+    this.$eventHub.$on('toggleModal', this.modalState);
+  },
+  methods: {
+    modalState(message) {
+      this.modalMessage = message;
+      this.uploadComplete = true;
+      setTimeout( () => {
+        this.uploadComplete = false;
+      }, 2000);
+    },
+  },
+  components: {
+    SemiModal: SemiModal,
+  },
 };
 </script>
 
@@ -34,13 +54,42 @@ export default {
     transform: translateY(0px);
   }
 }
+@keyframes bg-fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes modalfadein {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+.bg-fadein-enter-active {
+  animation: bg-fadein 0.5s;
+}
+.bg-fadein-leave-active {
+  animation: bg-fadein 0.2s reverse;
+}
 .fadein-enter-active {
   animation: fadein 0.5s;
 }
 .fadein-leave-active {
   animation: fadein 0.2s reverse;
 }
-
+.modalfadein-enter-active {
+  animation: modalfadein 0.5s;
+}
+.modalfadein-leave-active {
+  animation: modalfadein 0.2s reverse;
+}
 ::-webkit-scrollbar-track
  {
   -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,0);
@@ -71,7 +120,14 @@ html, body, p, span, input, div, table, ul, li, textarea {
   padding: 0;
   border: none;
 }
-
+select {
+        padding: 10px;
+        margin: 0;
+        -webkit-appearance:none; /* remove the strong OSX influence from Webkit */
+}
+select:focus {
+  outline: none;
+}
 button:focus, input:focus, textarea:focus {
   outline: none;
 }

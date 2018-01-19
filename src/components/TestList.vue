@@ -3,24 +3,15 @@
   <div class="test-list">
     <div class="list-header">
       <div>
-        <div class="title">Mopsy</div>
-        <div class="disc">
-          <p>UI Design</p>
-          <p>UX Research</p>
-          <p>Front-end Dev</p>
-        </div>
+        <div class="title">Mopsy<span>.log</span></div>
       </div>
-      <div>
+      <div class="wrapper-btn">
         <UploadButton></UploadButton>
       </div>
     </div>
     <div v-masonry transition-duration="0.3s" item-selector=".listitem">
         <cardview v-masonry-tile class="listitem" v-for="(item, index) in blocks" :key="item.id" :contents="item">
-
         </cardview>
-    </div>
-    <div class="footer" @click="loadMore">
-      <button class="btn-scroll" >Load more</button>
     </div>
     </div>
   </div>
@@ -45,24 +36,51 @@ export default {
     };
   },
   created() {
-    db.collection('post').orderBy('date').get().then(querySnapshot => {
+    db.collection('post').where('deleted', '==', false).orderBy('id', 'desc').get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         this.temp.push(doc.data());
       });
-      this.temp = this.temp.reverse();
       this.blocks = this.temp.slice(0,20);
     });
+    document.addEventListener('scroll', this.onScroll);
   },
-  // computed: {
-  //   loadContents() {
-  //       return window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
-  //   },
-  // },
+  computed: {
+    loadContents() {
+        return window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
+    },
+  },
   methods: {
     loadMore() {
       this.loadCount = this.loadCount + 1;
       var loadNum = this.loadCount * 20;
       this.blocks = this.temp.slice(0,loadNum);
+    },
+    onScroll() {
+      function getScrollXY() {
+        var scrOfX = 0, scrOfY = 0;
+        if( typeof( window.pageYOffset ) == 'number' ) {
+          //Netscape compliant
+          scrOfY = window.pageYOffset;
+          scrOfX = window.pageXOffset;
+        } else if( document.body && ( document.body.scrollLeft || document.body.scrollTop ) ) {
+          //DOM compliant
+          scrOfY = document.body.scrollTop;
+          scrOfX = document.body.scrollLeft;
+        } else if( document.documentElement && ( document.documentElement.scrollLeft || document.documentElement.scrollTop ) ) {
+          //IE6 standards compliant mode
+          scrOfY = document.documentElement.scrollTop;
+          scrOfX = document.documentElement.scrollLeft;
+        }
+
+        return scrOfY;
+      };
+      var docHeight = document.body.offsetHeight;
+      var winHeight = window.innerHeight;
+      var currentScroll = getScrollXY();
+      var pos = docHeight - (winHeight + currentScroll);
+      if ( pos < 0 ) {
+        this.loadMore();
+      }
     },
   },
   components: {
@@ -77,15 +95,21 @@ export default {
 .list-header {
   margin: 0px 20px 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: flex-start;
+  align-items: center;
 }
 .title {
-  font-size: 140px;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: 800;
+  font-size: 60px;
+  font-weight: 300;
 }
-
+.title span {
+  font-size: 24px;
+}
+.wrapper-btn {
+  margin-left: 40px;
+  position: relative;
+  top: 10px;
+}
 .disc {
   font-weight: 200;
   margin-top: 10px;
@@ -96,32 +120,6 @@ export default {
   height: auto;
   background-color: transparent;
   margin: 20px;
-
-}
-.footer {
-  width: 100%;
-  height: 300px;
-  padding: 20px;
-  margin-bottom: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-.btn-scroll {
-  width: 140px;
-  height: 60px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: #ccc;
-  font-size: 18px;
-  border-radius: 40px;
-  transition: all 0.3s;
-}
-.btn-scroll:hover {
-  background-color: #2b2c35;
 }
 .container-testlist {
   margin: 60px auto;
@@ -153,9 +151,6 @@ export default {
     max-width: 375px;
     margin-top: 20px;
   }
-  .title {
-    font-size: 80px;
-  }
 }
 @media (max-width: 400px) {
   .list-header {
@@ -168,9 +163,6 @@ export default {
   .listitem {
     width: 170px;
     margin: 5px;
-  }
-  .btn-scroll {
-
   }
 }
 @media (max-width: 361px) {
