@@ -121,9 +121,9 @@ html, body, p, span, input, div, table, ul, li, textarea {
   border: none;
 }
 select {
-        padding: 10px;
-        margin: 0;
-        -webkit-appearance:none; /* remove the strong OSX influence from Webkit */
+  padding: 10px;
+  margin: 0;
+  -webkit-appearance:none; /* remove the strong OSX influence from Webkit */
 }
 select:focus {
   outline: none;

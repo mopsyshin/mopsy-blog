@@ -31,7 +31,7 @@ export default {
     z-index: 1000;
 }
 .container-btn-back {
-    width: 768px;
+    max-width: 768px;
     margin: 0 auto;
 }
 .btn-back {
@@ -55,13 +55,13 @@ export default {
 @media (max-width: 400px) {
     .wrapper-btn-back {
         top: 20px;
-        left: 10px;
-        width: 100%;
         height: 48px;
     }
     .btn-back {
         height: 48px;
         width: 48px;
+        position: relative;
+        left: 10px;
     }
     .btn-back img {
         width: 10px;

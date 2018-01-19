@@ -17,7 +17,7 @@ export default {
     width: 40px;
     height: 40px;
     background-color: transparent;
-    border-radius: 100%;
+    border-radius: 40px;
     border: 1px solid #ccc;
     transition: all 0.3s;
 }

@@ -2289,7 +2289,7 @@ SUNEDITOR.defaultLang = {
                 ' ::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,0); border-radius: 2px; background-color: #ffffff; opacity: 0; }' +
                 ' ::-webkit-scrollbar { width: 0px; background-color: #ffffff; opacity: 0; display: none; }' +
                 ' ::-webkit-scrollbar-thumb { border-radius: 2px; -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3); background-color: #eee; }' +
-                '   body {font-family:'+options.editorIframeFont+'; color: #ccc; font-size: 18px; line-height: 1.8; margin:30px 10px; font-weight: 300; word-break:break-all;} p {margin:0; padding:0;} blockquote {margin-top:0; margin-bottom:0; margin-right:0;}' +
+                '   body {font-family:'+options.editorIframeFont+'; color: #ccc; font-size: 18px !important; line-height: 1.8 !important; margin:30px 10px; font-weight: 300; word-break:break-all;} p, span, h1, h2, h3, h4, h5, h6 { background-color: #363841; color: #ccc important; margin:0; padding:0; font-size: 18px !important; line-height: 1.8 !important; } blockquote {margin-top:0; margin-bottom:0; margin-right:0; font-size: 18px !important; line-height: 1.8 !important;}' +
                 '   table {table-layout:auto; border:1px solid rgb(204, 204, 204); width:100%; max-width:100%; margin-bottom:20px; background-color:transparent; border-spacing:0; border-collapse:collapse;}'+
                 '   table tr {border:1px solid #ccc;}'+
                 '   table tr td {border:1px solid #ccc; padding:8px;}'+

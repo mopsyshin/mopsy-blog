@@ -100,10 +100,9 @@ export default {
         // Blank Validation
         if (!isEmpty()) {
           console.log('pass');
+        
+        
           
-
-          // Router trigger event Define
-          this.$router.push({ name: 'TestList' });
           // Current postNumber Counting
           db.collection('post').get().then(querySnapshot => {
             querySnapshot.forEach(doc => {
@@ -124,7 +123,8 @@ export default {
               deleted: false,
               })  
               .then( () => {
-                console.log('success');
+                // Router trigger event Define
+                this.$router.push({ name: 'TestList' });
                 var message = "업로드가 완료되었습니다";
                 this.$eventHub.$emit('toggleModal', message);
               })
@@ -281,6 +281,7 @@ hr {
     font-size: 32px;
     line-height: 40px;
     min-height: 50px;
+    margin-bottom: 15px;
   }
   #body {
     font-size: 16px;

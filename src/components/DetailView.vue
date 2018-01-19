@@ -218,19 +218,20 @@ hr {
         line-height: 40px;
         margin: 20px 0px 10px;
         min-height: 0;
-        width: 70%;
     }
     .category {
         font-size: 12px;
     }
     .body {
         font-size: 16px;
-        line-height: 26px;
     }
 }
 @media (max-width: 400px ) {
     .wrapper-detailview {
       margin-top: 60px;
   }
+    .title {
+      max-width: 220px;
+    }
 }
 </style>
