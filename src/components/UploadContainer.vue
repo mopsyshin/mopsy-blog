@@ -39,14 +39,21 @@ var submitState;
 
 export default {
     name: 'UploadContainer',
-    mounted() {
-      autosize(document.getElementById('title'));
-      this.initEditor();
-    }, 
     created() {
       // initialize submit button
       submitState = false;
     },
+    mounted() {
+      autosize(document.getElementById('title'));
+      this.initEditor();
+      var iframe = document.getElementById('editor_iframe');
+      var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+      innerDoc.body.addEventListener("paste",(e) => {
+          e.preventDefault();
+          var text = e.clipboardData.getData("text/plain");
+          innerDoc.execCommand('inserttext', false, text);
+      });
+    }, 
     data() {
       return {
         getTitle: '',
@@ -77,6 +84,9 @@ export default {
           showList : false,
           showTable : false,
           showFullScreen : false,
+          showHiliteColor: false,
+          showFontColor: false,
+          showLine: false,
         });
       },
       submit() {

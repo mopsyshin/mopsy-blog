@@ -1797,7 +1797,7 @@ SUNEDITOR.defaultLang = {
                     '        <li>'+
                     '            <div class="box_color" data-display="sub">'+
                     '                <strong class="screen_out">'+lang.toolbar.fontColor+'</strong>'+
-                    '                <button type="button" class="btn_editor" title="'+lang.toolbar.fontColor+'">'+
+                    '                <button type="button" class="btn_editor btn_font_color" title="'+lang.toolbar.fontColor+'">'+
                     '                    <div class="ico_fcolor">'+
                     // '                        <em class="color_font" style="background-color:#1f92fe"></em>'+
                     '                    </div>'+
@@ -2276,7 +2276,10 @@ SUNEDITOR.defaultLang = {
         iframe.allowFullscreen = true;
         iframe.frameBorder = 0;
         iframe.className = "input_editor sun-editor-id-wysiwyg";
+        iframe.id = "editor_iframe";
         iframe.style.display = "block";
+        iframe.style.borderRadius = "20px";
+        iframe.style.backgroundColor = "#2b2c35";
         /** textarea */
         var textarea = doc.createElement("TEXTAREA");
         textarea.className = "input_editor html sun-editor-id-source";
@@ -2289,7 +2292,7 @@ SUNEDITOR.defaultLang = {
                 ' ::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,0); border-radius: 2px; background-color: #ffffff; opacity: 0; }' +
                 ' ::-webkit-scrollbar { width: 0px; background-color: #ffffff; opacity: 0; display: none; }' +
                 ' ::-webkit-scrollbar-thumb { border-radius: 2px; -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3); background-color: #eee; }' +
-                '   body {font-family:'+options.editorIframeFont+'; color: #ccc; font-size: 18px !important; line-height: 1.8 !important; margin:30px 10px; font-weight: 300; word-break:break-all;} p div[style], p[style], span[style], h1[style], h2[style], h3[style], h4[style], h5[style], h6[style] { background-color: #363841; color: #ccc important; margin:0; padding:0; font-size: 18px !important; line-height: 1.8 !important; } blockquote {margin-top:0; margin-bottom:0; margin-right:0; font-size: 18px !important; line-height: 1.8 !important;}' +
+                '   body {font-family:'+options.editorIframeFont+'; color: #ccc; font-size: 18px !important; line-height: 1.8 !important; margin:20px 15px; font-weight: 300; word-break:break-all;} p, span{ background-color: transparent; color: #ccc important; margin:0; padding:0; font-size: 18px !important; line-height: 1.8 !important; } blockquote {margin-top:0; margin-bottom:0; margin-right:0; font-size: 18px !important; line-height: 1.8 !important;}' +
                 '   table {table-layout:auto; border:1px solid rgb(204, 204, 204); width:100%; max-width:100%; margin-bottom:20px; background-color:transparent; border-spacing:0; border-collapse:collapse;}'+
                 '   table tr {border:1px solid #ccc;}'+
                 '   table tr td {border:1px solid #ccc; padding:8px;}'+
@@ -2341,9 +2344,9 @@ SUNEDITOR.defaultLang = {
         /** append */
         editor_div.appendChild(iframe);
         editor_div.appendChild(textarea);
-        relative.appendChild(tool_bar);
         relative.appendChild(editor_div);
         relative.appendChild(resize_bar);
+        relative.appendChild(tool_bar);
         relative.appendChild(dialog_div);
         relative.appendChild(resize_back);
         relative.appendChild(resize_img);

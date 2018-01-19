@@ -93,6 +93,9 @@ export default {
           showList : false,
           showTable : false,
           showFullScreen : false,
+          showHiliteColor: false,
+          showFontColor: false,
+          showLine: false,
         });
       },
       submit() {

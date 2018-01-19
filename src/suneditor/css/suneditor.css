@@ -84,14 +84,14 @@
 .sun-editor .sun-editor-id-toolbar .format_list li {padding:0px; width:100%;}
 .sun-editor .sun-editor-id-toolbar .font_size_list li {padding:0px; width:100%;}
 
-.sun-editor .sun-editor-id-toolbar .btn_editor {overflow:hidden; float:left; width:42px; height:42px; margin-left:8px; border-radius:40px; font-size:12px; line-height:27px; background-color:#43444e;}
+.sun-editor .sun-editor-id-toolbar .btn_editor {overflow:hidden; float:left; width:42px; height:42px; margin-left:8px; border-radius:40px; font-size:12px; line-height:27px; background-color:#43444e; }
 .sun-editor .sun-editor-id-toolbar .btn_editor.on { background-color:#53545f;}
 .sun-editor .sun-editor-id-toolbar .btn_editor:hover, .sun-editor .sun-editor-id-toolbar .btn_editor:focus {background-color: #53545f;}
 
 .sun-editor .sun-editor-id-toolbar .btn_edit {width:100%; height:28px; padding:0 14px; margin-left:0; font-size:12px; line-height:22px; text-indent:0; text-decoration:none; text-align:left;}
 .sun-editor .sun-editor-id-toolbar .btn_font {width:100px; text-align:left; text-indent:12px; display: none;}
 .sun-editor .sun-editor-id-toolbar .btn_format {width:100px; text-align:left; text-indent:12px; display: none;}
-.sun-editor .sun-editor-id-toolbar .btn_size {width:80px; text-align:left; text-indent:20px;}
+.sun-editor .sun-editor-id-toolbar .btn_size {width:80px; text-align:left; text-indent:20px; display: none;}
 .sun-editor .sun-editor-id-toolbar .btn_line {padding:0px 10px;}
 
 .sun-editor .sun-editor-id-toolbar .ico_more {position:absolute; top:18px; right:15px; width:7px; height:7px; background:url('../img/br_down_icon&48.png') no-repeat; background-size:100%;}
@@ -154,7 +154,7 @@
 .sun-editor .sun-editor-id-editorArea {-webkit-overflow-scrolling:touch !important; overflow:auto !important;}
 
 /* 리사이즈 바 */
-.sun-editor .sun-editor-id-resizeBar {width:100%; height:5px; background-color:#43444e; cursor:ns-resize; border-top: 20px solid #363841;}
+.sun-editor .sun-editor-id-resizeBar {width:100%; height:10px; background-color: transparent; cursor:ns-resize;}
 .sun-editor .sun-editor-id-resize-background {position:absolute; display:none; top:0; left:0; width:100%; height:100%; z-index:10000;}
 
 /* 다이얼로그 */
