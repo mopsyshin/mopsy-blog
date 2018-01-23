@@ -12,7 +12,7 @@ export default {
     name: 'BackButton',
     methods: {
         back() {
-            this.$router.go(-1);
+            this.$router.push('/');
         },
     },
 }

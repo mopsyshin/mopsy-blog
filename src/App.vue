@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div class="app-wrapper">
+      <!-- <button @click="loginModalToggle" v-if="!loginState">login</button> -->
       <transition name="fadein" mode="out-in" appear>
         <router-view/>
       </transition>
@@ -14,6 +15,11 @@
 <script>
 import BackButton from './components/BackButton';
 import SemiModal from './components/modal/SemiModal';
+import firebase from 'firebase';
+
+const provider = new firebase.auth.GoogleAuthProvider();
+provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
 
 export default {
   name: 'App',
@@ -21,6 +27,7 @@ export default {
     return {
       uploadComplete: false,
       modalMessage: '',
+      loginState: false,
     };
   },
   created() {
@@ -33,6 +40,25 @@ export default {
       setTimeout( () => {
         this.uploadComplete = false;
       }, 2000);
+    },
+    loginModalToggle() {
+      firebase.auth().signInWithPopup(provider).then( result => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        this.loginState = true;
+        // ...
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+     });
     },
   },
   components: {
@@ -137,9 +163,11 @@ button:hover {
 
 a {
   text-decoration: none;
+  color: #626cff;
 }
 a:visited {
   text-decoration: none;
+  color: #626cff;
 }
 body {
   background-color: #363841;
