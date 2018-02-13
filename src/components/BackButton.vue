@@ -13,6 +13,7 @@ export default {
     methods: {
         back() {
             this.$router.push('/');
+            document.body.style.overflow='auto';
         },
     },
 }

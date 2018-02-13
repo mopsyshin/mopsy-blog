@@ -12,12 +12,16 @@ export default new Router({
       path: '/',
       name: 'TestList',
       component: TestList,
-    },
-    {
-      path: '/post/:id',
-      name: 'DetailView',
-      component: DetailView,
-      props: true,
+      children: [
+        {
+          path: '/post/:id',
+          name: 'DetailView',
+          props: true,
+          components: {
+            DetailView,
+          },
+        },
+      ],
     },
     {
       path: '/upload',

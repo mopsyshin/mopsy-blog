@@ -1,5 +1,5 @@
 <template>
-    <div class="container-detialview">
+    <div class="container-detailview">
         <BackButton></BackButton>
             <div class="wrapper-detailview" v-if="!editState">
                 <div class="wrapper-title">
@@ -66,6 +66,9 @@ export default {
             this.contents = intData;
         });
     });
+  },
+  mounted() {
+    document.body.style.overflow='hidden';  
   },
   methods: {
         confirmDelete() {
@@ -142,6 +145,15 @@ hr {
   width: 100%;
   border: 1px solid #282A33;
 }
+.container-detailview {
+    width: 100%;
+    background-color: #363841;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow: scroll;
+}
 .wrapper-detailview {
     width: 100%;
     max-width: 768px;
@@ -155,6 +167,7 @@ hr {
     justify-content: space-between;
     align-items: flex-end;
     border-bottom: 1px solid #282A33;
+    min-height: 10vh;
     padding-bottom: 40px;
 }
 .title {

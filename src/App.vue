@@ -8,6 +8,7 @@
       <transition name="modalfadein">
         <SemiModal v-if="uploadComplete" :message="modalMessage"></SemiModal>
       </transition>
+
     </div>
   </div>
 </template>
@@ -80,6 +81,16 @@ export default {
     transform: translateY(0px);
   }
 }
+@keyframes detailfadein {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
 @keyframes bg-fadein {
   from {
     opacity: 0;
@@ -110,6 +121,12 @@ export default {
 .fadein-leave-active {
   animation: fadein 0.2s reverse;
 }
+.detailfadein-enter-active {
+  animation: detailfadein 0.5s;
+}
+.detailfadein-leave-active {
+  animation: detailfadein 0.2s reverse;
+}
 .modalfadein-enter-active {
   animation: modalfadein 0.5s;
 }
@@ -118,7 +135,6 @@ export default {
 }
 ::-webkit-scrollbar-track
  {
-  -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,0);
   border-radius: 2px;
   background-color: #ffffff;
   opacity: 0;
@@ -135,7 +151,6 @@ export default {
  ::-webkit-scrollbar-thumb
  {
   border-radius: 2px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
   background-color: #eee;
  }
 

@@ -1,19 +1,22 @@
 <template>
   <div class="container-testlist">
-  <div class="test-list">
-    <div class="list-header">
-      <div>
-        <div class="title">Mopsy<span>.log</span></div>
+    <div class="test-list">
+      <div class="list-header">
+        <div>
+          <div class="title">Mopsy<span>.log</span></div>
+        </div>
+        <div class="wrapper-btn">
+          <UploadButton></UploadButton>
+        </div>
       </div>
-      <div class="wrapper-btn">
-        <UploadButton></UploadButton>
+      <div v-masonry transition-duration="0.3s" item-selector=".listitem">
+          <cardview v-masonry-tile class="listitem" v-for="(item) in blocks" :key="item.id" :contents="item">
+          </cardview>
       </div>
     </div>
-    <div v-masonry transition-duration="0.3s" item-selector=".listitem">
-        <cardview v-masonry-tile class="listitem" v-for="(item, index) in blocks" :key="item.id" :contents="item">
-        </cardview>
-    </div>
-    </div>
+    <transition name="fadein" mode="out-in" appear>
+      <router-view name="DetailView" />
+    </transition>
   </div>
 </template>
 

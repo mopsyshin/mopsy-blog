@@ -187,7 +187,6 @@ export default {
 :hover:-moz-placeholder { /* Firefox 18- */
   color: #ccc;
 }
-
 input, textarea {
   display: block;
   width: 100%;
