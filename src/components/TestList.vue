@@ -53,7 +53,7 @@ export default {
       blocks: [],
       loadCount: 1,
       scrollPos: 0,
-      categoryArr: ['All', 'Design', 'Dev', 'Tech', 'Personal'],
+      categoryArr: ['All', 'Design', 'Dev', 'Tech', 'Think'],
       currentCategory: 'All',
     };
   },
@@ -213,6 +213,9 @@ export default {
   .listitem {
     width: 170px;
     margin: 5px;
+  }
+  .wrapper-tab-category {
+    margin-bottom: 20px;
   }
 }
 @media (max-width: 361px) {

@@ -159,7 +159,8 @@ hr {
     top: 0;
     left: 0;
     height: 100vh;
-    overflow: scroll;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 .wrapper-detailview {
     width: 100%;
@@ -243,7 +244,7 @@ hr {
 @media (max-width: 880px ) {
     .wrapper-detailview {
         box-sizing: border-box;
-        padding: 0px 8px;
+        padding: 0px 20px;
     }
     .title {
         font-size: 32px;
@@ -260,7 +261,7 @@ hr {
 }
 @media (max-width: 400px ) {
     .wrapper-detailview {
-      margin-top: 60px;
+      margin-top: 18px;
   }
     .title {
       max-width: 220px;
