@@ -15,9 +15,13 @@ The Title"></textarea>
           </select>
           <img class="downarrow" src="../assets/down.png" alt="">
         </div>
+        <div class="wrapper-upload-img">
+          <input type="text" v-model="getImgUrl" placeholder="Cover Image URL">
+        </div>
         <div class="wrapper-body">
           <textarea name="" id="suneditor" cols="30" rows="10"></textarea>
         </div>
+
         <div class="footer">
           <button class="btn-submit" @click="submit" :disabled="submitState">Submit</button>
         </div>
@@ -58,6 +62,7 @@ export default {
       return {
         getTitle: '',
         getCategory: '',
+        getImgUrl:'',
       };
     },
     computed: {
@@ -99,6 +104,7 @@ export default {
         var getBody = editor.getContent();
         var getTitle = this.getTitle;
         var getCategory = this.getCategory;
+        var getImgUrl = this.getImgUrl;
         var getPostCountStr;
         
         // Blank Validation function
@@ -131,6 +137,7 @@ export default {
               date: date,
               id: getPostCount,
               deleted: false,
+              img: getImgUrl,
               })  
               .then( () => {
                 // Router trigger event Define
@@ -280,6 +287,31 @@ hr {
   color: #cccccc;
   border: 1px solid #cccccc;
 }
+.wrapper-upload-img {
+  margin: 30px 0px 10px 0px;
+}
+.wrapper-upload-img input {
+  border-radius: 8px;
+  background-color: rgba(0,0,0,0.2);
+  font-size: 14px;
+  padding: 12px 15px;
+}
+.wrapper-upload-img input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #5c5965;
+  transition: all 0.3s;
+}
+.wrapper-upload-img input::-moz-placeholder { /* Firefox 19+ */
+  color: #5c5965;
+  transition: all 0.3s;
+}
+.wrapper-upload-img input:-ms-input-placeholder { /* IE 10+ */
+  color: #5c5965;
+  transition: all 0.3s;
+}
+.wrapper-upload-img input:-moz-placeholder { /* Firefox 18- */
+  color: #5c5965;
+  transition: all 0.3s;
+}
 @media (max-width: 880px) {
   .wrapper-upload {
     box-sizing: border-box;
@@ -316,6 +348,7 @@ hr {
     height: 40px;
   }
 }
+
 @media (max-width: 400px ) {
     .wrapper-upload {
       margin-top: 60px;

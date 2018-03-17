@@ -13,6 +13,9 @@ The Title"></textarea>
           </select>
           <img class="downarrow" src="../assets/down.png" alt="">
         </div>
+        <div class="wrapper-upload-img">
+          <input type="text" v-model="getImgUrl" placeholder="Cover Image URL">
+        </div>
         <div class="wrapper-body">
           <textarea name="" id="suneditor" cols="30" rows="10"></textarea>
         </div>
@@ -36,6 +39,14 @@ var submitState;
 
 export default {
     name: 'UploadContainer',
+    data() {
+      return {
+        getTitle: '',
+        getCategory: '',
+        getId: '',
+        getImgUrl: '',
+      };
+    },
     created() {
       var intData = [];
       var post_id = this.$route.params.id;
@@ -46,6 +57,7 @@ export default {
                 'title': doc.data().title,
                 'body': doc.data().body,
                 'category': doc.data().category,
+                'img': doc.data().img,
             }
             intData.push(data);
         });
@@ -55,6 +67,7 @@ export default {
         this.getTitle = intData[0].title;
         this.getCategory = intData[0].category;
         this.getId = intData[0].id;
+        this.getImgUrl = intData[0].img;
       });
       submitState = false;
     },
@@ -62,13 +75,6 @@ export default {
       autosize(document.getElementById('title'));
       this.initEditor();
     }, 
-    data() {
-      return {
-        getTitle: '',
-        getCategory: '',
-        getId: '',
-      };
-    },
     computed: {
       submitState() {
         return submitState;
@@ -108,6 +114,7 @@ export default {
         var getBody = editor.getContent();
         var getTitle = this.getTitle;
         var getCategory = this.getCategory;
+        var getImgUrl = this.getImgUrl;
 
         
         // Blank Validation function
@@ -124,6 +131,7 @@ export default {
               date: date,
               id: getPostCount,
               deleted: false,
+              img: getImgUrl,
               })  
               .then( () => {
                 console.log('success');
@@ -306,6 +314,31 @@ hr {
     font-size: 16px;
     height: 40px;
   }
+}
+.wrapper-upload-img {
+  margin: 30px 0px 10px 0px;
+}
+.wrapper-upload-img input {
+  border-radius: 8px;
+  background-color: rgba(0,0,0,0.2);
+  font-size: 14px;
+  padding: 12px 15px;
+}
+.wrapper-upload-img input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #5c5965;
+  transition: all 0.3s;
+}
+.wrapper-upload-img input::-moz-placeholder { /* Firefox 19+ */
+  color: #5c5965;
+  transition: all 0.3s;
+}
+.wrapper-upload-img input:-ms-input-placeholder { /* IE 10+ */
+  color: #5c5965;
+  transition: all 0.3s;
+}
+.wrapper-upload-img input:-moz-placeholder { /* Firefox 18- */
+  color: #5c5965;
+  transition: all 0.3s;
 }
 @media (max-width: 400px ) {
     .wrapper-upload {

@@ -14,9 +14,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="img-wrapper">
+                    <img :src="contents[0].img" alt="">
+                </div>
                 <div class="body-wrapper">
                     <div class="body" v-html="contents[0].body"></div>
                 </div>
+  
             </div>
             <div class="wrapper-editcontainer"  v-if="editState">
                 <EditContainer v-on:editStateChange="editComplete"></EditContainer>
@@ -44,6 +48,7 @@ export default {
               { 'title' : '' },
               { 'body' : '' },
               { 'category' : '' },
+              { 'img' : '' },
           ],
           editState: false,
           deleteMessage: "삭제하시겠습니까?",
@@ -60,6 +65,7 @@ export default {
                 'title': doc.data().title,
                 'body': tempBody,
                 'category': doc.data().category,
+                'img': doc.data().img,
             }
             var intData = [];
             intData.push(data);
@@ -103,6 +109,7 @@ export default {
                         'title': doc.data().title,
                         'body': doc.data().body,
                         'category': doc.data().category,
+                        'img': doc.data().img,
                     }
                     var intData = [];
                     intData.push(data);
@@ -196,14 +203,21 @@ hr {
     margin-left: 10px;
 }
 .body-wrapper {
-    margin: 30px 0px 120px;
+    margin: 30px 0px 30px;
 }
 .body {
     font-size: 18px !important;
     line-height: 1.8 !important;
+    letter-spacing: -0.3px;
     word-break: break-word;
     color: #ccc !important;
     background-color: transparent !important;
+    word-wrap: break-word;
+    word-break: keep-all;
+    margin-bottom: 200px;
+}
+.body p img {
+    border-radius: 10px;
 }
 .img-wrapper {
     margin-top: 50px;
@@ -214,7 +228,7 @@ hr {
     max-width: 100%;
     max-height: 700px;
     margin: 0 auto;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 .modal-background {
     position: fixed;

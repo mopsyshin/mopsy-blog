@@ -14,7 +14,7 @@
     "firebase": "^4.8.2",
     "moment": "^2.20.1",
     "vue": "^2.5.2",
-    "vue-masonry": "^0.10.16",
+    "vue-masonry": "^0.10.17",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

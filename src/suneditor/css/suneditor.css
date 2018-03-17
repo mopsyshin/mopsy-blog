@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 /* 메인 */
-.sun-editor {width:auto; height:auto; font-family:inherit; z-index:10000; margin-bottom: 30px;}
+.sun-editor {width:auto; height:auto; font-family:inherit; z-index:10000;}
 .sun-editor * {font-family:'Apple SD Gothic Neo', Helvetica, Arial, 'Malgun Gothic', Dotum, sans-serif; color: #ccc; font-weight: 600;}
 .sun-editor th, .sun-editor td, .sun-editor input, .sun-editor select, .sun-editor textarea, .sun-editor button {font-size:14px; line-height:1.5; color:#111;}
 .sun-editor body, .sun-editor div, .sun-editor dl, .sun-editor dt, .sun-editor dd, .sun-editor ul, .sun-editor ol, .sun-editor li,

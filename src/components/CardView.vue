@@ -3,7 +3,7 @@
     <div class="card-wrapper">
       <div class="title">{{ contents.title }}</div>
       <div class="img-wrapper">
-        <!-- <img :src="contents.img" alt=""> -->
+        <img :src="contents.img" alt="">
       </div>
       <div class="disc">{{ contents.category }}</div>
     </div>
@@ -54,7 +54,9 @@ export default {
   overflow: hidden;
 }
 .img-wrapper img {
+  border-radius: 10px;
   width: 100%;
+
 }
 @media (max-width: 880px) {
   .card-wrapper {

@@ -9,8 +9,23 @@
           <UploadButton></UploadButton>
         </div>
       </div>
+      <div class="wrapper-tab-category">
+        <div class="tab-category">
+         <categoryItem
+              v-for="(item) in categoryArr" 
+              :key="item.id" 
+              :categoryValue="item"
+              :currentCategory="currentCategory"
+              @click="categorize" >
+         </categoryItem>
+        </div>
+      </div>
       <div v-masonry transition-duration="0.3s" item-selector=".listitem">
-          <cardview v-masonry-tile class="listitem" v-for="(item) in blocks" :key="item.id" :contents="item">
+          <cardview v-masonry-tile 
+                    class="listitem" 
+                    v-for="(item) in filtering" 
+                    :key="item.id" 
+                    :contents="item">
           </cardview>
       </div>
     </div>
@@ -26,6 +41,8 @@ import Vue from 'vue'
 import {VueMasonryPlugin} from 'vue-masonry';
 import cardview from './CardView';
 import UploadButton from './UploadButton';
+import categoryItem from './CategoryItem';
+
 
 Vue.use(VueMasonryPlugin)
 export default {
@@ -36,6 +53,8 @@ export default {
       blocks: [],
       loadCount: 1,
       scrollPos: 0,
+      categoryArr: ['All', 'Design', 'Dev', 'Tech', 'Personal'],
+      currentCategory: 'All',
     };
   },
   created() {
@@ -45,14 +64,34 @@ export default {
       });
       this.blocks = this.temp.slice(0,20);
     });
+
     document.addEventListener('scroll', this.onScroll);
+
+    this.$eventHub.$on('categorize', this.categorize);
   },
   computed: {
     loadContents() {
         return window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
     },
+    filtering() {
+      var vm = this;
+      var category = vm.currentCategory;
+      if(category === "All") {
+				return vm.blocks;
+			} else {
+				return vm.blocks.filter(function(post) {
+					return post.category === category;
+				});
+			}
+    },
   },
   methods: {
+    categorize(value) {
+      this.currentCategory = value;
+      setTimeout(() => {
+        this.$redrawVueMasonry();
+      }, 50)
+    },
     loadMore() {
       this.loadCount = this.loadCount + 1;
       var loadNum = this.loadCount * 20;
@@ -74,7 +113,6 @@ export default {
           scrOfY = document.documentElement.scrollTop;
           scrOfX = document.documentElement.scrollLeft;
         }
-
         return scrOfY;
       };
       var docHeight = document.body.offsetHeight;
@@ -89,6 +127,7 @@ export default {
   components: {
     cardview: cardview,
     UploadButton: UploadButton,
+    categoryItem: categoryItem,
   },
 };
 </script>
@@ -129,6 +168,14 @@ export default {
   width: 100%;
   max-width: 2040px;
 }
+.wrapper-tab-category {
+  padding: 10px;
+}
+.tab-category {
+  display: flex;
+  
+}
+
 @media (max-width: 2040px) {
   .container-testlist {
     max-width: 1700px;
