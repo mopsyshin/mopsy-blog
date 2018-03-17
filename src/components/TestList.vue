@@ -53,7 +53,7 @@ export default {
       blocks: [],
       loadCount: 1,
       scrollPos: 0,
-      categoryArr: ['All', 'Design', 'Dev', 'Tech', 'Think'],
+      categoryArr: ['All', 'Design', 'Dev', 'Think'],
       currentCategory: 'All',
     };
   },
@@ -215,7 +215,7 @@ export default {
     margin: 5px;
   }
   .wrapper-tab-category {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 }
 @media (max-width: 361px) {

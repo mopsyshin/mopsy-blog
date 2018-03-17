@@ -31,19 +31,26 @@ export default {
 
 <style scoped>
     .item {
-        width: 80px;
         border-radius: 100px;
         transition: all 0.3s;
         background-color: transparent;
-        margin: 0px 5px;
+        padding: 12px 32px;
+        margin: 0px 3px;
         cursor: pointer;
         text-align: center;
+        color: #aaa;
+        border: 1px solid transparent;
+    }
+    .item:hover {
+        color: #ccc;
+        border: 1px solid #ccc;
     }
     .item.active {
         color: #2b2c35;
-        /* background-color: #ccc; */
+        background-color: #ccc;
+        border: 1px solid #ccc;
     }
-    .item::before {
+    /* .item::before {
         content: '';
         display: block;
         position: absolute;
@@ -60,22 +67,14 @@ export default {
         content: '';
         transform: translate(-5px, -10px) scale(1);
         opacity: 1;
-    }
+    } */
     @media (max-width: 400px ) {
         .item {
-            font-size: 12px;
-            width: 48px;
-            border-radius: 100px;
-            transition: all 0.3s;
-            background-color: transparent;
-            cursor: pointer;
-            text-align: center;
+            font-size: 14px;
+            padding: 6px 14px;
+            margin: 0px 1px;
         }
-        .item.active {
-            color: #2b2c35;
-            /* background-color: #ccc; */
-        }
-        .item::before {
+        /* .item::before {
             content: '';
             display: block;
             position: absolute;
@@ -92,7 +91,7 @@ export default {
             content: '';
             transform: translate(-8px, -8px) scale(1);
             opacity: 1;
-        }
+        } */
     }
 </style>
 

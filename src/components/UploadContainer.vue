@@ -10,7 +10,6 @@ The Title"></textarea>
             <option value="" hidden>Category</option>
             <option value="Design">Design</option>
             <option value="Dev">Dev</option>
-            <option value="Tech">Tech</option>
             <option value="Think">Think</option>
           </select>
           <img class="downarrow" src="../assets/down.png" alt="">
