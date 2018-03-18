@@ -169,7 +169,7 @@ export default {
   max-width: 2040px;
 }
 .wrapper-tab-category {
-  padding: 10px;
+  padding: 20px;
 }
 .tab-category {
   display: flex;
@@ -215,6 +215,7 @@ export default {
     margin: 5px;
   }
   .wrapper-tab-category {
+    padding: 10px;
     margin-bottom: 10px;
   }
 }

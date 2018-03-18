@@ -9,8 +9,8 @@
                     </div>
                     <div>
                         <div class="buttongroup">
-                            <div class="btn btn-edit" @click="editPost">수정</div>
-                            <div class="btn btn-delete" @click="deleteModalToggle">삭제</div>
+                            <!-- <div class="btn btn-edit" @click="editPost">수정</div>
+                            <div class="btn btn-delete" @click="deleteModalToggle">삭제</div> -->
                         </div>
                     </div>
                 </div>
