@@ -57,7 +57,8 @@ export default {
   },
   created() {
     var post_id = this.$route.params.id;
-     db.collection('post').where('id', '==', post_id).get().then(querySnapshot => {
+    var idInt = Number(post_id);
+     db.collection('post').where('id', '==', idInt).get().then(querySnapshot => {
         querySnapshot.forEach(doc => {
             var tempBody = doc.data().body;
             const data = {
@@ -180,16 +181,17 @@ hr {
 }
 .title {
     width: 100%;
-    max-width: 410px;
+    max-width: 520px;
     background-color: transparent;
     height: auto;
     min-height: 100px;
-    font-size: 64px;
+    font-size: 48px;
     margin: 0px 0px 10px;
     font-weight: 800;
-    line-height: 72px;
+    line-height: 60px;
     resize: none;
-    word-break: break-word;
+    word-break: keep-all;
+    word-wrap: break-word;
 }
 .category {
     color: #999;

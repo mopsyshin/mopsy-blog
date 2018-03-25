@@ -25,7 +25,7 @@ export default {
 .card-wrapper {
   color: #ccc;
   box-sizing: border-box;
-  padding: 40px;
+  padding: 32px;
   transition: all 0.3s;
   border-radius: 10px;
   background-color: #2b2c35;
@@ -37,19 +37,20 @@ export default {
   z-index: 10;
 }
 .title {
-  width: 70%;
-  font-size: 24px;
-  line-height: 32px;
+  width: 85%;
+  font-size: 20px;
+  line-height: 28px;
   font-weight: 800;
-  word-break: break-word;
+  word-break: keep-all;
+  word-wrap: break-word;
 }
 .disc {
   text-align: right;
 }
 .img-wrapper {
-  margin: 40px 0 20px;
+  margin: 28px 0 20px;
   width: 100%;
-  min-height: 100px;
+  min-height: 80px;
   max-height: 300px;
   overflow: hidden;
 }

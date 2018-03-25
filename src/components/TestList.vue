@@ -3,7 +3,7 @@
     <div class="test-list">
       <div class="list-header">
         <div>
-          <div class="title">Mopsy<span>.log</span></div>
+          <div class="title">Mopsy</div>
         </div>
         <div class="wrapper-btn">
           <UploadButton></UploadButton>
@@ -90,7 +90,7 @@ export default {
       this.currentCategory = value;
       setTimeout(() => {
         this.$redrawVueMasonry();
-      }, 50)
+      })
     },
     loadMore() {
       this.loadCount = this.loadCount + 1;
@@ -199,12 +199,26 @@ export default {
 @media (max-width: 680px) {
   .container-testlist {
     max-width: 375px;
-    margin-top: 20px;
+    margin-top: 8px;
   }
 }
 @media (max-width: 400px) {
+  .container-testlist {
+    max-width: 375px;
+    margin-top: 50px;
+  }
   .list-header {
-    margin: 0px 5px 20px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 6px 10px;
+    background-color: #363841;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.4);
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    justify-content: space-between;
   }
   .test-list {
     box-sizing: border-box;
@@ -217,6 +231,13 @@ export default {
   .wrapper-tab-category {
     padding: 10px;
     margin-bottom: 10px;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .wrapper-btn {
+    margin: 0;
+    top: 0;
   }
 }
 @media (max-width: 361px) {

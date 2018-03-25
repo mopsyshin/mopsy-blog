@@ -21,7 +21,6 @@ import SemiModal from './components/modal/SemiModal';
 // const provider = new firebase.auth.GoogleAuthProvider();
 // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
-
 export default {
   name: 'App',
   data() {
