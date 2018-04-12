@@ -44,101 +44,93 @@ export default {
   data() {
       return {
           contents: [
-              { 'id' : '' },
-              { 'title' : '' },
-              { 'body' : '' },
-              { 'category' : '' },
-              { 'img' : '' },
+              { 'id' : null },
+              { 'title' : null },
+              { 'body' : null },
+              { 'category' : null },
+              { 'img' : null },
           ],
           editState: false,
           deleteMessage: "삭제하시겠습니까?",
           modalIsActive: false,
+          error: null,
       };
   },
   created() {
-    var post_id = this.$route.params.id;
-    var idInt = Number(post_id);
-     db.collection('post').where('id', '==', idInt).get().then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-            var tempBody = doc.data().body;
-            const data = {
-                'id': doc.id,
-                'title': doc.data().title,
-                'body': tempBody,
-                'category': doc.data().category,
-                'img': doc.data().img,
-            }
-            var intData = [];
-            intData.push(data);
-            this.contents = intData;
-        });
-    });
+      this.getPost();
   },
   mounted() {
     document.body.style.overflow='hidden';  
   },
   methods: {
-        confirmDelete() {
-            var getPostCount = this.contents[0].id;
-            console.log(getPostCount);
-            db.collection('post').doc(getPostCount).update({
-                    deleted: true,
-                })  
-                .then( () => {
-                    this.$router.push({ name: 'TestList' });
-                    console.log('success');
-                })
-                .catch( error => {
-                    console.log('error');
-                });
-        },
-        deleteModalToggle() {
-            this.modalIsActive = true;
-        },
-        cancelDelete() {
-            this.modalIsActive = false;
-        },
-        editPost() {
-            this.editState = true;
-        },
-        editComplete() {
-            var post_id = this.$route.params.id;
-            db.collection('post').where('id', '==', post_id).get().then(querySnapshot => {
-                querySnapshot.forEach(doc => {
-                    const data = {
-                        'id': doc.id,
-                        'title': doc.data().title,
-                        'body': doc.data().body,
-                        'category': doc.data().category,
-                        'img': doc.data().img,
-                    }
-                    var intData = [];
-                    intData.push(data);
-                    this.contents = intData;
-                });
-            })
-            .then(()=> {
-                this.editState = false;
+      getPost() {
+        var post_id = this.$route.params.id;
+        var idInt = Number(post_id);
+        console.log(idInt);
+        db.collection('post').where('id', '==', idInt).get().then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+                var tempBody = doc.data().body;
+                const data = {
+                    'id': doc.id,
+                    'title': doc.data().title,
+                    'body': tempBody,
+                    'category': doc.data().category,
+                    'img': doc.data().img,
+                }
+                var intData = [];
+                intData.push(data);
+                this.contents = intData;
             });
+        });
+      },
+    confirmDelete() {
+        var getPostCount = this.contents[0].id;
+        console.log(getPostCount);
+        db.collection('post').doc(getPostCount).update({
+                deleted: true,
+            })  
+            .then( () => {
+                this.$router.push({ name: 'TestList' });
+                console.log('success');
+            })
+            .catch( error => {
+                console.log('error');
+            });
+    },
+    deleteModalToggle() {
+        this.modalIsActive = true;
+    },
+    cancelDelete() {
+        this.modalIsActive = false;
+    },
+    editPost() {
+        this.editState = true;
+    },
+    editComplete() {
+        var post_id = this.$route.params.id;
+        db.collection('post').where('id', '==', post_id).get().then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+                const data = {
+                    'id': doc.id,
+                    'title': doc.data().title,
+                    'body': doc.data().body,
+                    'category': doc.data().category,
+                    'img': doc.data().img,
+                }
+                var intData = [];
+                intData.push(data);
+                this.contents = intData;
+            });
+        })
+        .then(()=> {
+            this.editState = false;
+        });
       },
   },
-  beforeRouteUpdate(to, from, next) {
-    var toPostId = to.params.id;
-    db.collection('post').where('id', '==', toPostId).get().then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-            const data = {
-                'id': doc.id,
-                'title': doc.data().title,
-                'body': doc.data().body,
-                'img': doc.data().img,
-                'category': doc.data().category,
-            }
-            var intData = [];
-            intData.push(data);
-            this.contents = intData;
-        });
-    });
-    next();
+
+  watch: {
+    // 라우트가 변경되면 메소드를 다시 호출됩니다.
+    '$route': 'getPost'
   },
   components: {
       BackButton: BackButton,
