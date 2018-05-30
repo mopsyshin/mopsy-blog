@@ -31,7 +31,7 @@ The Title"></textarea>
 
 
 <script>
-import db from './firebaseInit';
+import { db } from '../firebaseInit';
 import Router from 'vue-router';
 import moment from 'moment';
 import BackButton from './BackButton';

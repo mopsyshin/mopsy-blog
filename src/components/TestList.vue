@@ -5,9 +5,14 @@
         <div>
           <div class="title">Mopsy</div>
         </div>
-        <div class="wrapper-btn">
-          <UploadButton></UploadButton>
+        <transition>
+        <div class="wrapper-btn" v-if="!loginState">
+          <button @click="login">login</button>
         </div>
+        <div class="wrapper-btn" v-if="loginState">
+          <button @click="logout">logout</button>
+        </div>
+        </transition>
       </div>
       <div class="wrapper-tab-category">
         <div class="tab-category">
@@ -32,11 +37,12 @@
     <transition name="fadein" mode="out-in" appear>
       <router-view name="DetailView" />
     </transition>
+    <UploadButton v-if="loginState"></UploadButton>
   </div>
 </template>
 
 <script>
-import db from './firebaseInit';
+import { db } from '../firebaseInit';
 import Vue from 'vue'
 import {VueMasonryPlugin} from 'vue-masonry';
 import cardview from './CardView';
@@ -57,19 +63,13 @@ export default {
       currentCategory: 'All',
     };
   },
-  created() {
-    db.collection('post').where('deleted', '==', false).orderBy('id', 'desc').get().then(querySnapshot => {
-      querySnapshot.forEach(doc => {
-        this.temp.push(doc.data());
-      });
-      this.blocks = this.temp.slice(0,20);
-    });
-
-    document.addEventListener('scroll', this.onScroll);
-
-    this.$eventHub.$on('categorize', this.categorize);
-  },
   computed: {
+    isAdmin() {
+      return this.$store.getters.isAdmin;
+    },
+    loginState() {
+      return this.$store.getters.loginState;
+    },
     loadContents() {
         return window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
     },
@@ -85,7 +85,27 @@ export default {
 			}
     },
   },
+  created() {
+    db.collection('post').where('deleted', '==', false).orderBy('id', 'desc').get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        this.temp.push(doc.data());
+      });
+      this.blocks = this.temp.slice(0,20);
+    });
+    document.addEventListener('scroll', this.onScroll);
+    this.$eventHub.$on('categorize', this.categorize);
+    this.checkUser();
+  },
   methods: {
+    checkUser() {
+      this.$store.dispatch('checkUser');
+    },
+    logout() {
+      this.$store.dispatch('logout');
+    },
+    login() {
+      this.$store.dispatch('login');
+    },
     categorize(value) {
       this.currentCategory = value;
       setTimeout(() => {
@@ -138,7 +158,7 @@ export default {
   margin: 0px 20px 20px;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: baseline;
 }
 .title {
   font-size: 60px;
@@ -148,9 +168,15 @@ export default {
   font-size: 24px;
 }
 .wrapper-btn {
-  margin-left: 40px;
-  position: relative;
-  top: 10px;
+  display: flex;
+  margin-left: 16px;
+}
+.wrapper-btn button {
+  font-size: 14px;
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  opacity: 0.5;
 }
 .disc {
   font-weight: 200;

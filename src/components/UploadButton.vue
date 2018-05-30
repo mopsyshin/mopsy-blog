@@ -12,12 +12,14 @@ export default {
 </script>
 <style scoped>
 .btn-add-post {
+    position: fixed;
+    bottom: 64px;
+    right: 64px;
     color: #ccc;
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(255,255,255, 0.5);
     border-radius: 40px;
-    border: 1px solid #ccc;
     transition: all 0.3s;
     cursor: pointer;
     display: flex;
@@ -25,8 +27,7 @@ export default {
     align-items: center;
 }
 .btn-add-post:hover {
-    color: #fff;
-    border: 1px solid #fff;
+    background-color: #fff;
 }
 .btn-add-post img {
   width: 24px;

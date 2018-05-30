@@ -8,9 +8,9 @@
                         <div class="category">{{ contents[0].category }}</div>
                     </div>
                     <div>
-                        <div class="buttongroup">
-                            <!-- <div class="btn btn-edit" @click="editPost">수정</div>
-                            <div class="btn btn-delete" @click="deleteModalToggle">삭제</div> -->
+                        <div class="buttongroup" v-if="isAdmin">
+                            <div class="btn btn-edit" @click="editPost">수정</div>
+                            <div class="btn btn-delete" @click="deleteModalToggle">삭제</div>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import db from './firebaseInit';
+import { db } from '../firebaseInit';
 import BackButton from './BackButton';
 import MessageModalForm from './modal/MessageModalForm';
 import EditContainer from './EditContainer';
@@ -55,6 +55,11 @@ export default {
           modalIsActive: false,
           error: null,
       };
+  },
+  computed: {
+    isAdmin() {
+      return this.$store.getters.isAdmin;
+    },
   },
   created() {
       this.getPost();
