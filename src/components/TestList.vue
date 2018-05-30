@@ -237,14 +237,6 @@ export default {
     box-sizing: border-box;
     margin: 0px;
     padding: 6px 10px;
-    background-color: #363841;
-    box-shadow: 0px 2px 8px rgba(0,0,0,0.4);
-    position: fixed;
-    top:0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    justify-content: space-between;
   }
   .test-list {
     box-sizing: border-box;
@@ -261,9 +253,10 @@ export default {
   .title {
     font-size: 24px;
   }
-  .wrapper-btn {
-    margin: 0;
-    top: 0;
+  .wrapper-btn button {
+    margin-left: 0px;
+    padding: 0px;
+    font-size: 12px;
   }
 }
 @media (max-width: 361px) {

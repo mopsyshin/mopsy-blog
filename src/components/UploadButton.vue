@@ -43,9 +43,11 @@ export default {
 }
 @media (max-width: 410px ) {
   .btn-add-post {
-    width: 24px;
-    height: 24px;
+    width: 48px;
+    height: 48px;
     border: none;
+    bottom: 48px;
+    right: 24px;
   }
   .btn-add-post img {
     width: 16px;
