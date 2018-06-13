@@ -181,7 +181,9 @@ export default {
   font-size: 24px;
 }
 .info {
-  position: absolute;
+  position: fixed;
+  width: 100%;
+  max-width: 240px;
   z-index: 1;
   top: 50%;
   left: 50%;
@@ -197,6 +199,7 @@ export default {
   transform: rotate(45deg);
   float: right;
   margin: -10px -18px 0px 0px;
+  cursor: pointer;
 }
 .info .item span {
   display: block;
