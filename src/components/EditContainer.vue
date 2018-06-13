@@ -133,13 +133,11 @@ export default {
               img: getImgUrl,
               })  
               .then( () => {
-                console.log('success');
                 var message = "수정이 완료되었습니다";
                 this.$eventHub.$emit('toggleModal', message);
                 this.$emit('editStateChange');
               })
               .catch( error => {
-                console.log('error');
               });
         } else {
           alert("Please Complete Title & Category");

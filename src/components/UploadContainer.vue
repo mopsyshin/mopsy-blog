@@ -110,14 +110,9 @@ export default {
         var isEmpty = () => {
             return getTitle.trim() === "" || getCategory.trim() === "" || getBody.trim() === ""
         };
-        console.log(isEmpty());
         
         // Blank Validation
         if (!isEmpty()) {
-          console.log('pass');
-        
-        
-          
           // Current postNumber Counting
           db.collection('post').get().then(querySnapshot => {
             querySnapshot.forEach(doc => {
@@ -126,7 +121,6 @@ export default {
           }).then( () => {
               getPostCount = postNumbers.length;
               getPostCountStr = getPostCount.toString();
-              console.log(getPostCount);
           }).then( () => {
             // Set Data to Database
             db.collection('post').doc(getPostCountStr).set({
@@ -145,15 +139,12 @@ export default {
                 this.$eventHub.$emit('toggleModal', message);
               })
               .catch( error => {
-                console.log('error');
               });
           });
         } else {
-          console.log('fail');
           alert("Please Complete Title & Category");
           // initialize submit button
           submitState = false;
-        
         };
       },
     },

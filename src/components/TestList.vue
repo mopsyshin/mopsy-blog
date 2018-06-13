@@ -7,10 +7,10 @@
         </div>
         <transition>
         <div class="wrapper-btn" v-if="!loginState">
-          <button @click="login">login</button>
+          <button @click="login">Login</button>
         </div>
         <div class="wrapper-btn" v-if="loginState">
-          <button @click="logout">logout</button>
+          <button @click="logout">Logout</button>
         </div>
         </transition>
       </div>
@@ -157,7 +157,7 @@ export default {
 .list-header {
   margin: 0px 20px 20px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: baseline;
 }
 .title {
@@ -173,10 +173,16 @@ export default {
 }
 .wrapper-btn button {
   font-size: 14px;
-  color: #ffffff;
-  background-color: transparent;
+  background-color: #2b2c35;
+  color: rgba(255,255,255,0.7);
+  border-radius: 24px;
+  padding: 8px 24px;
   border: none;
-  opacity: 0.5;
+  transition: all 0.3s;
+}
+.wrapper-btn button:hover {
+  background-color: #1f1f25;
+  color: rgba(255,255,255,1);
 }
 .disc {
   font-weight: 200;
@@ -231,7 +237,7 @@ export default {
 @media (max-width: 400px) {
   .container-testlist {
     max-width: 375px;
-    margin-top: 50px;
+    margin-top: 8px;
   }
   .list-header {
     box-sizing: border-box;
@@ -255,7 +261,7 @@ export default {
   }
   .wrapper-btn button {
     margin-left: 0px;
-    padding: 0px;
+    padding: 8px 16px;
     font-size: 12px;
   }
 }

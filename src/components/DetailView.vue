@@ -71,7 +71,6 @@ export default {
       getPost() {
         var post_id = this.$route.params.id;
         var idInt = Number(post_id);
-        console.log(idInt);
         db.collection('post').where('id', '==', idInt).get().then(querySnapshot => {
             querySnapshot.forEach(doc => {
                 var tempBody = doc.data().body;
@@ -90,16 +89,13 @@ export default {
       },
     confirmDelete() {
         var getPostCount = this.contents[0].id;
-        console.log(getPostCount);
         db.collection('post').doc(getPostCount).update({
                 deleted: true,
             })  
             .then( () => {
                 this.$router.push({ name: 'TestList' });
-                console.log('success');
             })
             .catch( error => {
-                console.log('error');
             });
     },
     deleteModalToggle() {
