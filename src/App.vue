@@ -73,7 +73,7 @@ export default {
 @keyframes fadein {
   from {
     opacity: 0;
-    transform: translateY(-50px);
+    transform: translateY(-30px);
   }
   to {
     opacity: 1;
@@ -83,7 +83,7 @@ export default {
 @keyframes detailfadein {
   from {
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(30%);
   }
   to {
     opacity: 1;

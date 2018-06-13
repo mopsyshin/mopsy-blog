@@ -3,7 +3,18 @@
     <div class="test-list">
       <div class="list-header">
         <div>
-          <div class="title">Mopsy</div>
+          <div class="title" @click="infoState = !infoState">Mopsy</div>
+          <transition name="bg-fadein" mode="out-in" appear>
+          <div class="info" v-if="infoState">
+            <img src="../assets/plus.svg" @click="infoState = !infoState">
+            <div class="item">
+              Github<span>github.com/mopsyshin</span>
+            </div>
+            <div class="item">
+              Facebook<span>facebook.com/mopsyshin</span>
+            </div>
+          </div>
+          </transition>
         </div>
         <transition>
         <div class="wrapper-btn" v-if="!loginState">
@@ -61,6 +72,7 @@ export default {
       scrollPos: 0,
       categoryArr: ['All', 'Design', 'Dev', 'Think'],
       currentCategory: 'All',
+      infoState: false,
     };
   },
   computed: {
@@ -163,9 +175,35 @@ export default {
 .title {
   font-size: 60px;
   font-weight: 300;
+  cursor: pointer;
 }
 .title span {
   font-size: 24px;
+}
+.info {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  font-weight: 700;
+  background-color: rgba(255,255,255,0.95);
+  color: #2b2c35;
+  padding: 32px 40px 48px;
+  border-radius: 8px;
+}
+.info img {
+  transform: rotate(45deg);
+  float: right;
+  margin: -10px -18px 0px 0px;
+}
+.info .item span {
+  display: block;
+  font-weight: 400;
+}
+.info .item {
+  margin-top: 12px;
 }
 .wrapper-btn {
   display: flex;
