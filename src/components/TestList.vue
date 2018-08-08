@@ -37,16 +37,16 @@
         </div>
       </div>
       <div v-masonry transition-duration="0.3s" item-selector=".listitem">
-          <cardview v-masonry-tile 
-                    class="listitem" 
-                    v-for="(item) in filtering" 
-                    :key="item.id" 
+          <cardview v-masonry-tile
+                    class="listitem"
+                    v-for="(item) in filtering"
+                    :key="item.id"
                     :contents="item">
           </cardview>
       </div>
     </div>
     <transition name="fadein" mode="out-in" appear>
-      <router-view name="DetailView" />
+      <router-view name="DetailView"/>
     </transition>
     <UploadButton v-if="loginState"></UploadButton>
   </div>
@@ -66,9 +66,6 @@ export default {
   name: 'TestList',
   data() {
     return {
-      temp: [],
-      blocks: [],
-      loadCount: 1,
       scrollPos: 0,
       categoryArr: ['All', 'Design', 'Dev', 'Think'],
       currentCategory: 'All',
@@ -76,6 +73,9 @@ export default {
     };
   },
   computed: {
+    blocks() {
+      return this.$store.getters.blocks;
+    },
     isAdmin() {
       return this.$store.getters.isAdmin;
     },
@@ -98,12 +98,7 @@ export default {
     },
   },
   created() {
-    db.collection('post').where('deleted', '==', false).orderBy('id', 'desc').get().then(querySnapshot => {
-      querySnapshot.forEach(doc => {
-        this.temp.push(doc.data());
-      });
-      this.blocks = this.temp.slice(0,20);
-    });
+    this.$store.dispatch('getPost');
     document.addEventListener('scroll', this.onScroll);
     this.$eventHub.$on('categorize', this.categorize);
     this.checkUser();
@@ -123,11 +118,6 @@ export default {
       setTimeout(() => {
         this.$redrawVueMasonry();
       })
-    },
-    loadMore() {
-      this.loadCount = this.loadCount + 1;
-      var loadNum = this.loadCount * 20;
-      this.blocks = this.temp.slice(0,loadNum);
     },
     onScroll() {
       function getScrollXY() {
@@ -152,7 +142,7 @@ export default {
       var currentScroll = getScrollXY();
       var pos = docHeight - (winHeight + currentScroll);
       if ( pos < 0 ) {
-        this.loadMore();
+        this.$store.commit('increaseLoadCount');
       }
     },
   },

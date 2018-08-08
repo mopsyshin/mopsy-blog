@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { auth } from '../firebaseInit';
+import { db, auth } from '../firebaseInit';
 import firebase from 'firebase';
 
 Vue.use(Vuex);
@@ -8,6 +8,8 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     user: null,
+    loadCount: 1,
+    posts: [],
   },
   getters: {
     loginState(state) {
@@ -25,13 +27,40 @@ export const store = new Vuex.Store({
       }
       return false;
     },
+    blocks(state) {
+      if (state.posts.length) {
+        return state.posts.slice(0, state.loadCount * 20);
+      }
+      return [];
+    }
   },
   mutations: {
     setUserInfo(state, payload) {
       state.user = payload.user;
-    }
+    },
+    setPosts(state, payload) {
+      state.posts = payload.posts;
+    },
+    increaseLoadCount(state) {
+      state.loadCount += 1;
+    },
   },
   actions: {
+    loadMorePosts() {
+      this.commit('increaseLoadCount');
+    },
+    getPost() {
+      let posts = [];
+      db.collection('post').where('deleted', '==', false).orderBy('id', 'desc').get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          posts.push(doc.data());
+        });
+      });
+      this.commit({
+        type: 'setPosts',
+        posts,
+      });
+    },
     logout() {
       auth.signOut().then(() => {
         this.commit({

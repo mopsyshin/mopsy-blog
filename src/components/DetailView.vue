@@ -4,8 +4,8 @@
             <div class="wrapper-detailview" v-if="!editState">
                 <div class="wrapper-title">
                     <div>
-                        <div class="title">{{ contents[0].title }}</div>
-                        <div class="category">{{ contents[0].category }}</div>
+                        <div class="title">{{ contents.title }}</div>
+                        <div class="category">{{ contents.category }}</div>
                     </div>
                     <div>
                         <div class="buttongroup" v-if="isAdmin">
@@ -15,10 +15,10 @@
                     </div>
                 </div>
                 <div class="img-wrapper">
-                    <img :src="contents[0].img" alt="">
+                    <img :src="contents.img">
                 </div>
                 <div class="body-wrapper">
-                    <div class="body" v-html="contents[0].body"></div>
+                    <div class="body" v-html="contents.body"></div>
                 </div>
   
             </div>
@@ -43,13 +43,6 @@ export default {
   name: 'DetailView',
   data() {
       return {
-          contents: [
-              { 'id' : null },
-              { 'title' : null },
-              { 'body' : null },
-              { 'category' : null },
-              { 'img' : null },
-          ],
           editState: false,
           deleteMessage: "삭제하시겠습니까?",
           modalIsActive: false,
@@ -57,36 +50,19 @@ export default {
       };
   },
   computed: {
+    contents() {
+      const posts = this.$store.state.posts;
+      const contents = posts.find(item => item.id === this.$route.params.id);
+      return contents;
+    },
     isAdmin() {
       return this.$store.getters.isAdmin;
     },
-  },
-  created() {
-      this.getPost();
   },
   mounted() {
     document.body.style.overflow='hidden';  
   },
   methods: {
-      getPost() {
-        var post_id = this.$route.params.id;
-        var idInt = Number(post_id);
-        db.collection('post').where('id', '==', idInt).get().then(querySnapshot => {
-            querySnapshot.forEach(doc => {
-                var tempBody = doc.data().body;
-                const data = {
-                    'id': doc.id,
-                    'title': doc.data().title,
-                    'body': tempBody,
-                    'category': doc.data().category,
-                    'img': doc.data().img,
-                }
-                var intData = [];
-                intData.push(data);
-                this.contents = intData;
-            });
-        });
-      },
     confirmDelete() {
         var getPostCount = this.contents[0].id;
         db.collection('post').doc(getPostCount).update({
