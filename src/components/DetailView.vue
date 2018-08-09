@@ -141,7 +141,6 @@ hr {
     margin: 60px auto;
     color: #ccc;
 }
-
 .wrapper-title {
     margin-bottom: 40px;
     border-bottom: 1px solid #282A33;
@@ -155,7 +154,7 @@ hr {
     height: auto;
     min-height: 100px;
     font-size: 48px;
-    margin: 0px 0px 10px;
+    margin: 20px 0px 10px;
     font-weight: 800;
     line-height: 60px;
     resize: none;
@@ -235,7 +234,7 @@ hr {
 }
 @media (max-width: 400px ) {
     .wrapper-detailview {
-      margin-top: 18px;
+      margin-top: 36px;
      }
     .wrapper-title {
         margin-bottom: 20px;
