@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     toPostDetail() {
-      this.lockBackground();
+      this.stopBodyScroll(true);
       this.$router.push({ name: 'DetailView', params: { id: this.id } });
     },
   },
@@ -33,12 +33,21 @@ export default {
   transition: all 0.3s;
   border-radius: 10px;
   background-color: #2b2c35;
+  cursor: pointer;
 }
 .card-wrapper:hover {
   color: #fff;
   background-color: #1f1f25;
   transform: translate(-5px, -5px) scale(1.1);
   z-index: 10;
+}
+@media (hover: none) {
+  .card-wrapper:hover {
+    color: #ccc;
+    background-color: #2b2c35;
+    transform: none;
+    z-index: 10;
+  }
 }
 .title {
   width: 85%;

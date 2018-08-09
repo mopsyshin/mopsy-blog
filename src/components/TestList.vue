@@ -215,6 +215,12 @@ export default {
   background-color: #1f1f25;
   color: rgba(255,255,255,1);
 }
+@media (hover: none) {
+  .wrapper-btn button:hover {
+    background-color: inherit;
+    color: inherit;
+  }
+}
 .disc {
   font-weight: 200;
   margin-top: 10px;

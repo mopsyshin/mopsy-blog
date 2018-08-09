@@ -39,7 +39,7 @@ export const store = new Vuex.Store({
       state.user = payload.user;
     },
     setPosts(state, payload) {
-      state.posts = payload.posts;
+      state.posts.push(payload.data);
     },
     increaseLoadCount(state) {
       state.loadCount += 1;
@@ -47,15 +47,14 @@ export const store = new Vuex.Store({
   },
   actions: {
     getPost() {
-      let posts = [];
       db.collection('post').where('deleted', '==', false).orderBy('id', 'desc').get().then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          posts.push(doc.data());
+          const data = doc.data();
+          this.commit({
+            type: 'setPosts',
+            data,
+          });
         });
-      });
-      this.commit({
-        type: 'setPosts',
-        posts,
       });
     },
     logout() {

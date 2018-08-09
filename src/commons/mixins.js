@@ -11,15 +11,17 @@ const mixin = {
   //   },
   // },
   methods: {
-    lockBackground() {
-      const target = document.body;
-      target.style.overflow = 'hidden';
-      target.style.position = 'relative';
+    stopBodyScroll(bool) {
+      if (bool === true ) {
+        document.body.addEventListener("touchmove", this.freezeVp, false);
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.addEventListener("touchmove", this.freezeVp, true);
+        document.body.style.overflow = 'auto';
+      }
     },
-    unlockBackground() {
-      const target = document.body;
-      target.style.overflow = 'auto';
-      target.style.position = 'static';
+    freezeVp(e) {
+      e.preventDefault();
     },
   },
 };

@@ -12,7 +12,7 @@ export default {
     name: 'BackButton',
     methods: {
         back() {
-          this.unlockBackground();
+          this.stopBodyScroll(false);
           this.$router.push('/');
         },
     },
@@ -46,6 +46,11 @@ export default {
 }
 .btn-back:hover {
     background-color: #ccc;
+}
+@media (hover: none) {
+  .btn-back:hover {
+    background-color: #1f1f25;
+  }
 }
 .btn-back img {
     width: 14px;

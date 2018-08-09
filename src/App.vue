@@ -27,7 +27,6 @@ export default {
     return {
       uploadComplete: false,
       modalMessage: '',
-      // loginState: false,
     };
   },
   created() {
@@ -41,25 +40,6 @@ export default {
         this.uploadComplete = false;
       }, 2000);
     },
-    // loginModalToggle() {
-    //   firebase.auth().signInWithPopup(provider).then( result => {
-    //     // This gives you a Google Access Token. You can use it to access the Google API.
-    //     var token = result.credential.accessToken;
-    //     // The signed-in user info.
-    //     var user = result.user;
-    //     this.loginState = true;
-    //     // ...
-    //   }).catch(function(error) {
-    //     // Handle Errors here.
-    //     var errorCode = error.code;
-    //     var errorMessage = error.message;
-    //     // The email of the user's account used.
-    //     var email = error.email;
-    //     // The firebase.auth.AuthCredential type that was used.
-    //     var credential = error.credential;
-    //     // ...
-    //  });
-    // },
   },
   components: {
     SemiModal: SemiModal,
@@ -73,11 +53,11 @@ export default {
 @keyframes fadein {
   from {
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translateX(10px);
   }
   to {
     opacity: 1;
-    transform: translateY(0px);
+    transform: translateX(0px);
   }
 }
 @keyframes detailfadein {
@@ -115,7 +95,7 @@ export default {
   animation: bg-fadein 0.2s reverse;
 }
 .fadein-enter-active {
-  animation: fadein 0.5s;
+  animation: fadein 0.3s;
 }
 .fadein-leave-active {
   animation: fadein 0.2s reverse;

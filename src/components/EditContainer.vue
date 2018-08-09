@@ -277,6 +277,12 @@ hr {
   color: #cccccc;
   border: 1px solid #cccccc;
 }
+@media (hover: none) {
+  .btn:hover {
+    color: inherit;
+    border: inherit;
+  }
+}
 @media (max-width: 880px) {
   .wrapper-upload {
     box-sizing: border-box;

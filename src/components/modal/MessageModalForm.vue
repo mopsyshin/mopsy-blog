@@ -57,4 +57,10 @@ export default {
         color: #cccccc;
         border: 1px solid #cccccc;
     }
+    @media (hover: none) {
+      .btn:hover {
+        color: inherit;
+        border: inherit;
+      }
+    }
 </style>

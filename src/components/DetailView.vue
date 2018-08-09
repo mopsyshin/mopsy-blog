@@ -14,7 +14,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="img-wrapper">
+                <div class="img-wrapper" v-if="contents.img != ''">
                     <img :src="contents.img">
                 </div>
                 <div class="body-wrapper">
@@ -47,30 +47,30 @@ export default {
       deleteMessage: "삭제하시겠습니까?",
       modalIsActive: false,
       error: null,
-      contents: {},
     };
   },
   computed: {
+    id() {
+      return this.$route.params.id;
+    },
     isAdmin() {
       return this.$store.getters.isAdmin;
     },
-  },
-  created() {
-    this.setContents();
+    contents() {
+      let data = this.$store.state.posts.find(item => item.id == this.id);
+      if (data) {
+        return data;
+      }
+      return {
+        'id': '',
+        'title': '',
+        'body': '',
+        'category': '',
+        'img': '',
+      };
+    },
   },
   methods: {
-    setContents() {
-      if (this.$store.state.posts.length !== 0) {
-        this.contents = this.$store.state.posts.find(item => item.id === this.$route.params.id);
-      } else {
-        var post_id = Number(this.$route.params.id, 10);
-        db.collection('post').where('id', '==', post_id).get().then(querySnapshot => {
-          querySnapshot.forEach(doc => {
-            this.contents = doc.data();
-          });
-        });
-      }
-    },
     confirmDelete() {
       var getPostCount = this.contents[0].id;
       db.collection('post').doc(getPostCount).update({
@@ -111,12 +111,6 @@ export default {
           this.editState = false;
         });
       },
-  },
-  watch: {
-    $route() {
-      // this.setContents();
-      console.log(this.$route);
-    },
   },
   components: {
       BackButton: BackButton,
@@ -243,12 +237,24 @@ hr {
 @media (max-width: 400px ) {
     .wrapper-detailview {
       margin-top: 18px;
-  }
+     }
+    .wrapper-title {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-bottom: 1px solid #282A33;
+        min-height: 10vh;
+        padding-bottom: 20px;
+    }
     .title {
-      max-width: 220px;
+      max-width: 300px;
     }
     .btn {
         font-size: 12px;
+    }
+    .body-wrapper {
+        margin: 10px 0px 30px;
     }
     .body {
         font-size: 14px !important;
