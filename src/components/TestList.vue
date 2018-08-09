@@ -45,9 +45,6 @@
           </cardview>
       </div>
     </div>
-    <transition name="fadein" mode="out-in" appear>
-      <router-view name="DetailView"/>
-    </transition>
     <UploadButton v-if="loginState"></UploadButton>
   </div>
 </template>
@@ -117,7 +114,7 @@ export default {
       this.currentCategory = value;
       setTimeout(() => {
         this.$redrawVueMasonry();
-      })
+      }, 300);
     },
     onScroll() {
       function getScrollXY() {

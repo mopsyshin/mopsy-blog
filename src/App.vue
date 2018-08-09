@@ -5,6 +5,9 @@
       <transition name="fadein" mode="out-in" appear>
         <router-view/>
       </transition>
+      <transition name="fadein" mode="out-in" appear>
+        <router-view name="DetailView"/>
+      </transition>
       <transition name="modalfadein">
         <SemiModal v-if="uploadComplete" :message="modalMessage"></SemiModal>
       </transition>
