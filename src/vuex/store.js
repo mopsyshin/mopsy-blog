@@ -68,15 +68,14 @@ export const store = new Vuex.Store({
       });
     },
     login() {
-      const provider = new firebase.auth.GoogleAuthProvider();
       auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
         .then(() => {
           var provider = new firebase.auth.GoogleAuthProvider();
           return auth.signInWithRedirect(provider);
         })
         .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
+          console.log(error.code);
+          console.log(error.message);
       });
     },
     checkUser() {

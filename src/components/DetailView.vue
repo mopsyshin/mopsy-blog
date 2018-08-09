@@ -8,7 +8,7 @@
                         <div class="category">{{ contents.category }}</div>
                     </div>
                     <div>
-                        <div class="buttongroup" v-if="isAdmin">
+                        <div class="button-group" v-if="isAdmin">
                             <div class="btn btn-edit" @click="editPost">수정</div>
                             <div class="btn btn-delete" @click="deleteModalToggle">삭제</div>
                         </div>
@@ -20,7 +20,6 @@
                 <div class="body-wrapper">
                     <div class="body" v-html="contents.body"></div>
                 </div>
-  
             </div>
             <div class="wrapper-editcontainer"  v-if="editState">
                 <EditContainer v-on:editStateChange="editComplete"></EditContainer>
@@ -145,9 +144,6 @@ hr {
 
 .wrapper-title {
     margin-bottom: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
     border-bottom: 1px solid #282A33;
     min-height: 10vh;
     padding-bottom: 40px;
@@ -169,6 +165,9 @@ hr {
 .category {
     color: #999;
 }
+.button-group {
+  text-align: right;
+}
 .btn {
     background-color: transparent;
     border: none;
@@ -176,7 +175,7 @@ hr {
     color: #aaa;
     font-size: 14px;
     display: inline-block;
-    margin-left: 10px;
+    margin-right: 10px;
 }
 .body-wrapper {
     margin: 30px 0px 30px;
@@ -240,9 +239,6 @@ hr {
      }
     .wrapper-title {
         margin-bottom: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
         border-bottom: 1px solid #282A33;
         min-height: 10vh;
         padding-bottom: 20px;
