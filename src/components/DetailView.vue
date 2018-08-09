@@ -42,37 +42,45 @@ import EditContainer from './EditContainer';
 export default {
   name: 'DetailView',
   data() {
-      return {
-          editState: false,
-          deleteMessage: "삭제하시겠습니까?",
-          modalIsActive: false,
-          error: null,
-      };
+    return {
+      editState: false,
+      deleteMessage: "삭제하시겠습니까?",
+      modalIsActive: false,
+      error: null,
+      contents: {},
+    };
   },
   computed: {
-    contents() {
-      const posts = this.$store.state.posts;
-      const contents = posts.find(item => item.id === this.$route.params.id);
-      return contents;
-    },
     isAdmin() {
       return this.$store.getters.isAdmin;
     },
   },
-  mounted() {
-    document.body.style.overflow='hidden';  
+  created() {
+    this.setContents();
   },
   methods: {
+    setContents() {
+      if (this.$store.state.posts.length !== 0) {
+        this.contents = this.$store.state.posts.find(item => item.id === this.$route.params.id);
+      } else {
+        var post_id = Number(this.$route.params.id, 10);
+        db.collection('post').where('id', '==', post_id).get().then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            this.contents = doc.data();
+          });
+        });
+      }
+    },
     confirmDelete() {
-        var getPostCount = this.contents[0].id;
-        db.collection('post').doc(getPostCount).update({
-                deleted: true,
-            })  
-            .then( () => {
-                this.$router.push({ name: 'TestList' });
-            })
-            .catch( error => {
-            });
+      var getPostCount = this.contents[0].id;
+      db.collection('post').doc(getPostCount).update({
+          deleted: true,
+        })  
+        .then( () => {
+          this.$router.push({ name: 'TestList' });
+        })
+        .catch( error => {
+        });
     },
     deleteModalToggle() {
         this.modalIsActive = true;
@@ -86,28 +94,29 @@ export default {
     editComplete() {
         var post_id = this.$route.params.id;
         db.collection('post').where('id', '==', post_id).get().then(querySnapshot => {
-            querySnapshot.forEach(doc => {
-                const data = {
-                    'id': doc.id,
-                    'title': doc.data().title,
-                    'body': doc.data().body,
-                    'category': doc.data().category,
-                    'img': doc.data().img,
-                }
-                var intData = [];
-                intData.push(data);
-                this.contents = intData;
-            });
+          querySnapshot.forEach(doc => {
+            const data = {
+              'id': doc.id,
+              'title': doc.data().title,
+              'body': doc.data().body,
+              'category': doc.data().category,
+              'img': doc.data().img,
+            }
+            var intData = [];
+            intData.push(data);
+            this.contents = intData;
+          });
         })
         .then(()=> {
-            this.editState = false;
+          this.editState = false;
         });
       },
   },
-
   watch: {
-    // 라우트가 변경되면 메소드를 다시 호출됩니다.
-    '$route': 'getPost'
+    $route() {
+      // this.setContents();
+      console.log(this.$route);
+    },
   },
   components: {
       BackButton: BackButton,
@@ -126,6 +135,7 @@ hr {
     width: 100%;
     background-color: #363841;
     position: fixed;
+    z-index: 100;
     top: 0;
     left: 0;
     height: 100vh;

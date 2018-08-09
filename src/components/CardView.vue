@@ -1,13 +1,11 @@
 <template>
-  <router-link :to="{ name: 'DetailView', params: { id:id } }">
-    <div class="card-wrapper">
-      <div class="title">{{ contents.title }}</div>
-      <div class="img-wrapper">
-        <img :src="contents.img" alt="">
-      </div>
-      <div class="disc">{{ contents.category }}</div>
+  <div class="card-wrapper" @click="toPostDetail">
+    <div class="title">{{ contents.title }}</div>
+    <div class="img-wrapper">
+      <img :src="contents.img" alt="">
     </div>
-  </router-link>
+    <div class="disc">{{ contents.category }}</div>
+  </div>
 </template>
 
 <script>
@@ -18,6 +16,12 @@ export default {
     return {
       id: this.contents.id,
     };
+  },
+  methods: {
+    toPostDetail() {
+      this.lockBackground();
+      this.$router.push({ name: 'DetailView', params: { id: this.id } });
+    },
   },
 };
 </script>

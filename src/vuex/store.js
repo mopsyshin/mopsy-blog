@@ -46,9 +46,6 @@ export const store = new Vuex.Store({
     },
   },
   actions: {
-    loadMorePosts() {
-      this.commit('increaseLoadCount');
-    },
     getPost() {
       let posts = [];
       db.collection('post').where('deleted', '==', false).orderBy('id', 'desc').get().then(querySnapshot => {

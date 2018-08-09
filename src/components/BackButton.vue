@@ -12,8 +12,8 @@ export default {
     name: 'BackButton',
     methods: {
         back() {
-            this.$router.push('/');
-            document.body.style.overflow='auto';
+          this.unlockBackground();
+          this.$router.push('/');
         },
     },
 }
