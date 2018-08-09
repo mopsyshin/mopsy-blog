@@ -8,7 +8,6 @@
       <transition name="modalfadein">
         <SemiModal v-if="uploadComplete" :message="modalMessage"></SemiModal>
       </transition>
-
     </div>
   </div>
 </template>
@@ -164,6 +163,8 @@ a:visited {
   color: #626cff;
 }
 body {
+  width: 100vw;
+  min-height: 100vh;
   background-color: #363841;
   color: #ccc;
 }

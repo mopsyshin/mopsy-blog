@@ -1,28 +1,19 @@
 const mixin = {
-  // computed: {
-  //   user() {
-  //     return this.$store.state.accountStore.user;
-  //   },
-  //   userInfo() {
-  //     return this.$store.state.accountStore.userInfo;
-  //   },
-  //   loginState() {
-  //     return this.$store.state.accountStore.loginState;
-  //   },
-  // },
   methods: {
     stopBodyScroll(bool) {
       if (bool === true ) {
-        document.body.addEventListener("touchmove", this.freezeVp, false);
+        document.body.style.position = 'fixed';
         document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
       } else {
-        document.body.addEventListener("touchmove", this.freezeVp, true);
+        document.body.style.position = 'static';
         document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
       }
     },
-    freezeVp(e) {
-      e.preventDefault();
-    },
+    // freezeVp(e) {
+    //   e.preventDefault();
+    // },
   },
 };
 

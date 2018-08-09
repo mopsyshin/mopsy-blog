@@ -19,7 +19,6 @@ export default {
   },
   methods: {
     toPostDetail() {
-      this.stopBodyScroll(true);
       this.$router.push({ name: 'DetailView', params: { id: this.id } });
     },
   },

@@ -1,5 +1,5 @@
 <template>
-    <div class="container-detailview">
+    <div class="container-detailview" ref='bg'>
         <BackButton></BackButton>
             <div class="wrapper-detailview" v-if="!editState">
                 <div class="wrapper-title">
@@ -69,6 +69,9 @@ export default {
       };
     },
   },
+  mounted() {
+    this.stopBodyScroll(true);
+  },
   methods: {
     confirmDelete() {
       var getPostCount = this.contents[0].id;
@@ -125,7 +128,7 @@ hr {
   border: 1px solid #282A33;
 }
 .container-detailview {
-    width: 100%;
+    width: 100vw;
     background-color: #363841;
     position: fixed;
     z-index: 100;
@@ -177,7 +180,7 @@ hr {
     margin-right: 10px;
 }
 .body-wrapper {
-    margin: 30px 0px 30px;
+    margin: 30px 0px 0px;
 }
 .body {
     font-size: 18px !important;
@@ -188,7 +191,7 @@ hr {
     background-color: transparent !important;
     word-wrap: break-word;
     word-break: keep-all;
-    margin-bottom: 200px;
+    padding-bottom: 40px;
 }
 .body p img {
     border-radius: 10px;
@@ -249,7 +252,7 @@ hr {
         font-size: 12px;
     }
     .body-wrapper {
-        margin: 10px 0px 30px;
+        margin: 10px 0px 0px;
     }
     .body {
         font-size: 14px !important;
