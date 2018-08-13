@@ -6,7 +6,17 @@ import UploadContainer from '@/components/UploadContainer';
 
 Vue.use(Router);
 
+const scrollBehavior = (to, from, savedPosition) => {
+  if (savedPosition) {
+    return savedPosition;
+  } else {
+    return { x: 0, y: 0 };
+  }
+}
+
 export default new Router({
+  mode: 'history',
+  scrollBehavior,
   routes: [
     {
       path: '/',
@@ -17,10 +27,7 @@ export default new Router({
       path: '/post/:id',
       name: 'DetailView',
       props: true,
-      components: {
-        default: TestList,
-        DetailView,
-      },
+      component: DetailView,
     },
     {
       path: '/upload',

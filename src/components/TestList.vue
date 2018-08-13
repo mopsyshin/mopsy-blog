@@ -36,7 +36,7 @@
          </categoryItem>
         </div>
       </div>
-      <div v-masonry transition-duration="0.3s" item-selector=".listitem">
+      <div v-masonry transition-duration="0s" item-selector=".listitem">
           <cardview v-masonry-tile
                     class="listitem"
                     v-for="(item) in filtering"

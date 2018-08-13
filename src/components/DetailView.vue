@@ -69,9 +69,6 @@ export default {
       };
     },
   },
-  mounted() {
-    this.stopBodyScroll(true);
-  },
   methods: {
     confirmDelete() {
       var getPostCount = this.contents[0].id;
@@ -130,11 +127,9 @@ hr {
 .container-detailview {
     width: 100vw;
     background-color: #363841;
-    position: fixed;
     z-index: 100;
     top: 0;
     left: 0;
-    height: 100vh;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
