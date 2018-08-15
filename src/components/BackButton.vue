@@ -12,8 +12,7 @@ export default {
     name: 'BackButton',
     methods: {
         back() {
-          this.stopBodyScroll(false);
-          this.$router.push('/');
+          this.$router.go(-1);
         },
     },
 }

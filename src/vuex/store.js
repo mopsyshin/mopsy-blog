@@ -44,6 +44,9 @@ export const store = new Vuex.Store({
     increaseLoadCount(state) {
       state.loadCount += 1;
     },
+    refreshPosts(state) {
+      state.posts = [];
+    },
   },
   actions: {
     getPost() {

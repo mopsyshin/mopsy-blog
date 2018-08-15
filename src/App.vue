@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <div class="app-wrapper">
+      
       <transition name="fadein" mode="out-in" appear>
         <router-view/>
       </transition>
+      
       <transition name="modalfadein">
         <SemiModal v-if="uploadComplete" :message="modalMessage"></SemiModal>
       </transition>
@@ -28,6 +30,7 @@ export default {
     };
   },
   created() {
+    this.$store.dispatch('getPost');
     this.$eventHub.$on('toggleModal', this.modalState);
   },
   methods: {

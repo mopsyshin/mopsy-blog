@@ -5,18 +5,21 @@ import DetailView from '@/components/DetailView';
 import UploadContainer from '@/components/UploadContainer';
 
 Vue.use(Router);
-
-const scrollBehavior = (to, from, savedPosition) => {
-  if (savedPosition) {
-    return savedPosition;
-  } else {
-    return { x: 0, y: 0 };
-  }
-}
-
 export default new Router({
   mode: 'history',
-  scrollBehavior,
+  scrollBehavior: ( to, from, savedPosition ) => {
+    if (savedPosition) {
+      setTimeout(() => {
+        window.scrollTo(savedPosition.x, savedPosition.y);
+        return savedPosition;
+      }, 300);
+    } else {
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        return { x: 0, y: 0 };
+      }, 300);
+    }
+  },
   routes: [
     {
       path: '/',

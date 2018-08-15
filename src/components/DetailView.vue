@@ -69,6 +69,11 @@ export default {
       };
     },
   },
+  mounted() {
+    if (this.$store.state.posts.length == 0) {
+      this.$store.dispatch('getPost');
+    }
+  },
   methods: {
     confirmDelete() {
       var getPostCount = this.contents[0].id;
