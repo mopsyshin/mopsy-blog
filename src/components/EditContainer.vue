@@ -146,7 +146,7 @@ export default {
         };
       },
       cancelEdit() {
-        this.$emit('editStateChange');
+        this.$emit('editStateChange', false);
       }
     },
 }

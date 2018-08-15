@@ -8,17 +8,23 @@ Vue.use(Router);
 export default new Router({
   mode: 'history',
   scrollBehavior: ( to, from, savedPosition ) => {
-    if (savedPosition) {
-      setTimeout(() => {
-        window.scrollTo(savedPosition.x, savedPosition.y);
-        return savedPosition;
-      }, 300);
+    console.log(to);
+    if (to.name == 'TestList') {
+      if (savedPosition) {
+        setTimeout(() => {
+          window.scrollTo(savedPosition.x, savedPosition.y);
+          return savedPosition;
+        }, 300);
+      } else {
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          return { x: 0, y: 0 };
+        }, 300);
+      }
     } else {
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        return { x: 0, y: 0 };
-      }, 300);
+      return { x: 0, y: 0 };
     }
+    
   },
   routes: [
     {

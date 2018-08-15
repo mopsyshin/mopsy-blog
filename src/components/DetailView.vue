@@ -69,11 +69,6 @@ export default {
       };
     },
   },
-  mounted() {
-    if (this.$store.state.posts.length == 0) {
-      this.$store.dispatch('getPost');
-    }
-  },
   methods: {
     confirmDelete() {
       var getPostCount = this.contents[0].id;
@@ -95,26 +90,12 @@ export default {
     editPost() {
         this.editState = true;
     },
-    editComplete() {
-        var post_id = this.$route.params.id;
-        db.collection('post').where('id', '==', post_id).get().then(querySnapshot => {
-          querySnapshot.forEach(doc => {
-            const data = {
-              'id': doc.id,
-              'title': doc.data().title,
-              'body': doc.data().body,
-              'category': doc.data().category,
-              'img': doc.data().img,
-            }
-            var intData = [];
-            intData.push(data);
-            this.contents = intData;
-          });
-        })
-        .then(()=> {
-          this.editState = false;
-        });
-      },
+    editComplete(bool) {
+      if ( bool ) {
+        this.$store.dispatch('refreshPost');    
+      }
+      this.editState = false;
+    },
   },
   components: {
       BackButton: BackButton,

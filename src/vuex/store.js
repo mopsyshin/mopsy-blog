@@ -44,12 +44,24 @@ export const store = new Vuex.Store({
     increaseLoadCount(state) {
       state.loadCount += 1;
     },
-    refreshPosts(state) {
+    clearPosts (state) {
       state.posts = [];
     },
   },
   actions: {
     getPost() {
+      db.collection('post').where('deleted', '==', false).orderBy('id', 'desc').get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          const data = doc.data();
+          this.commit({
+            type: 'setPosts',
+            data,
+          });
+        });
+      });
+    },
+    refreshPost() {
+      this.commit('clearPosts');
       db.collection('post').where('deleted', '==', false).orderBy('id', 'desc').get().then(querySnapshot => {
         querySnapshot.forEach(doc => {
           const data = doc.data();
