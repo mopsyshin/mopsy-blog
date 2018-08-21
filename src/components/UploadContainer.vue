@@ -137,6 +137,7 @@ export default {
                 this.$router.push({ name: 'TestList' });
                 var message = "업로드가 완료되었습니다";
                 this.$eventHub.$emit('toggleModal', message);
+                this.$store.dispatch('refreshPost');
               })
               .catch( error => {
               });
@@ -199,7 +200,6 @@ textarea {
 .category-select {
   width: 150px;
   padding-left: 20px;
-  margin-left: 10px;
   background-color: transparent;
   color: #999;
   border-color: #999;
@@ -312,7 +312,7 @@ hr {
     font-size: 32px;
     line-height: 40px;
     min-height: 50px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
   #body {
     font-size: 16px;
@@ -341,7 +341,7 @@ hr {
 
 @media (max-width: 400px ) {
     .wrapper-upload {
-      margin-top: 60px;
+      margin-top: 40px;
   }
 }
 

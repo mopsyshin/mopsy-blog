@@ -62,15 +62,7 @@ export const store = new Vuex.Store({
     },
     refreshPost() {
       this.commit('clearPosts');
-      db.collection('post').where('deleted', '==', false).orderBy('id', 'desc').get().then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          const data = doc.data();
-          this.commit({
-            type: 'setPosts',
-            data,
-          });
-        });
-      });
+      this.dispatch('getPost');
     },
     logout() {
       auth.signOut().then(() => {

@@ -8,7 +8,6 @@ Vue.use(Router);
 export default new Router({
   mode: 'history',
   scrollBehavior: ( to, from, savedPosition ) => {
-    console.log(to);
     if (to.name == 'TestList') {
       if (savedPosition) {
         setTimeout(() => {

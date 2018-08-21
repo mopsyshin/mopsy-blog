@@ -71,12 +71,13 @@ export default {
   },
   methods: {
     confirmDelete() {
-      var getPostCount = this.contents[0].id;
-      db.collection('post').doc(getPostCount).update({
+      var id = this.id.toString();
+      db.collection('post').doc(id).update({
           deleted: true,
         })  
         .then( () => {
           this.$router.push({ name: 'TestList' });
+          this.$store.dispatch('refreshPost');
         })
         .catch( error => {
         });
