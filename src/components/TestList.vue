@@ -65,7 +65,6 @@ export default {
     return {
       scrollPos: 0,
       categoryArr: ['All', 'Design', 'Dev', 'Think'],
-      currentCategory: 'All',
       infoState: false,
     };
   },
@@ -82,14 +81,15 @@ export default {
     loadContents() {
         return window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
     },
+    currentCategory() {
+      return this.$store.state.currentCategory;
+    },
     filtering() {
-      var vm = this;
-      var category = vm.currentCategory;
-      if(category === "All") {
-				return vm.blocks;
+      if(this.currentCategory === "All") {
+				return this.blocks;
 			} else {
-				return vm.blocks.filter(function(post) {
-					return post.category === category;
+				return this.blocks.filter( post => {
+					return post.category === this.currentCategory;
 				});
 			}
     },
@@ -109,10 +109,13 @@ export default {
       this.$store.dispatch('login');
     },
     categorize(value) {
-      this.currentCategory = value;
+      this.$store.commit({
+        type: 'categorize',
+        value,
+      });
       setTimeout(() => {
         this.$redrawVueMasonry();
-      }, 300);
+      }, 200);
     },
   },
   components: {

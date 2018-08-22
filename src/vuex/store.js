@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
     user: null,
     loadCount: 1,
     posts: [],
+    currentCategory: 'All',
   },
   getters: {
     loginState(state) {
@@ -46,6 +47,9 @@ export const store = new Vuex.Store({
     },
     clearPosts (state) {
       state.posts = [];
+    },
+    categorize(state, payload) {
+      state.currentCategory = payload.value;
     },
   },
   actions: {

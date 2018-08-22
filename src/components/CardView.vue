@@ -12,11 +12,6 @@
 export default {
   name: 'CardView',
   props: ['contents'],
-  // data() {
-  //   return {
-  //     id: this.contents.id,
-  //   };
-  // },
   computed: {
     id() {
       return this.contents.id;
