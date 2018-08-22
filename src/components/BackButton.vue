@@ -2,7 +2,10 @@
     <div class="wrapper-btn-back">
         <div class="container-btn-back">
             <button class="btn-back" @click="back">
-                <img src="../assets/arrow.svg" alt="">
+                <img src="@/assets/arrow.svg" alt="">
+            </button>
+            <button class="btn-home" @click="toHome">
+                <img src="@/assets/home.svg">
             </button>
         </div>
     </div>
@@ -13,6 +16,9 @@ export default {
     methods: {
         back() {
           this.$router.go(-1);
+        },
+        toHome()  {
+          this.$router.push({ name: 'TestList' });
         },
     },
 }
@@ -33,6 +39,8 @@ export default {
 .container-btn-back {
     max-width: 768px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 }
 .btn-back {
     background-color: transparent;
@@ -45,6 +53,17 @@ export default {
 }
 .btn-back:hover {
     background-color: #ccc;
+}
+.btn-home {
+    background-color: transparent;
+    border: none;
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    transition: all 0.3s;
+}
+.btn-home img {
+  width: 36px;
 }
 @media (hover: none) {
   .btn-back:hover {
@@ -67,6 +86,15 @@ export default {
         width: 48px;
         position: relative;
         left: 10px;
+    }
+    .btn-home {
+        height: 48px;
+        width: 48px;
+        position: relative;
+        right: 10px;
+    }
+    .btn-home img {
+      width: 30px;
     }
     .btn-back img {
         width: 10px;
